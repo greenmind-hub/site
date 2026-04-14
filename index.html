@@ -3,231 +3,219 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GreenMind | Cultivo Inteligente</title>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;800&display=swap" rel="stylesheet">
+    <title>GreenMind | Tecnologia que cultiva o futuro</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg: #030704;
-            --surface: #0a0f0b;
-            --primary: #22c55e;
+            --primary-green: #142819; /* Verde original das suas imagens */
+            --accent-green: #2e7d32;
             --gold: #d4af37;
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --border: rgba(255, 255, 255, 0.08);
-            --glass: rgba(255, 255, 255, 0.03);
+            --dark-bg: #050a06;
+            --text-light: #e0e0e0;
+            --glass: rgba(20, 40, 25, 0.85);
+            --border: rgba(212, 175, 55, 0.2);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
 
         body {
-            background-color: var(--bg);
-            color: var(--text-main);
-            overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
+            background-color: var(--dark-bg);
+            color: var(--text-light);
+            background-image: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?q=80&w=2000');
+            background-size: cover;
+            background-attachment: fixed;
+            line-height: 1.6;
         }
 
-        /* --- NAV --- */
+        /* NAVEGAÇÃO */
         nav {
             display: flex; justify-content: space-between; align-items: center;
-            padding: 24px 8%; position: fixed; width: 100%; top: 0; z-index: 1000;
-            background: rgba(3, 7, 4, 0.8); backdrop-filter: blur(12px);
+            padding: 20px 8%; background: rgba(5, 10, 6, 0.95);
+            backdrop-filter: blur(10px); position: fixed; width: 100%; top: 0; z-index: 1000;
             border-bottom: 1px solid var(--border);
         }
 
-        .logo { font-weight: 800; font-size: 1.4rem; letter-spacing: -1px; display: flex; align-items: center; gap: 8px; color: #fff; cursor: pointer; }
-        .logo span { color: var(--gold); }
+        .logo { font-weight: 800; font-size: 1.5rem; color: var(--gold); display: flex; align-items: center; gap: 10px; cursor: pointer; }
+        .nav-links { display: flex; list-style: none; gap: 30px; }
+        .nav-links li { cursor: pointer; font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; transition: 0.3s; color: #aaa; }
+        .nav-links li:hover, .nav-links li.active { color: var(--gold); }
 
-        .nav-links { display: flex; list-style: none; gap: 40px; }
-        .nav-links li { 
-            font-size: 0.85rem; font-weight: 500; cursor: pointer; color: var(--text-muted);
-            transition: all 0.3s;
-        }
-        .nav-links li:hover, .nav-links li.active { color: #fff; }
+        .container { max-width: 1200px; margin: 120px auto 60px; padding: 0 20px; }
 
-        /* --- CONTAINER --- */
-        .container { max-width: 1200px; margin: 0 auto; padding: 140px 24px 80px; }
-
-        .tab-content { display: none; animation: slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+        /* TRANSIÇÃO */
+        .tab-content { display: none; animation: fadeIn 0.6s ease; }
         .tab-content.active { display: block; }
-        @keyframes slideUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* --- TEXTOS --- */
-        .hero-text { text-align: center; max-width: 800px; margin: 0 auto 60px; }
-        h1 { font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 800; line-height: 1.1; letter-spacing: -2px; margin-bottom: 24px; }
-        .gradient-text { background: linear-gradient(135deg, #fff 30%, var(--gold)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        p.lead { font-size: 1.25rem; color: var(--text-muted); line-height: 1.6; }
+        /* HERO & CARDS */
+        .hero { text-align: center; padding: 40px 0 80px; }
+        .hero h1 { font-size: 3.5rem; margin-bottom: 20px; color: #fff; }
+        .hero p { font-size: 1.2rem; color: #ccc; max-width: 700px; margin: 0 auto; }
 
-        /* --- CARDS & GRIDS --- */
-        .card { 
-            background: var(--surface); border: 1px solid var(--border); border-radius: 32px;
-            padding: 40px; transition: all 0.5s; position: relative; overflow: hidden;
+        .main-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
+        .card-link { 
+            background: var(--glass); border: 1px solid var(--border); border-radius: 20px; 
+            padding: 40px; transition: 0.4s; cursor: pointer; text-decoration: none; color: inherit;
         }
-        .card:hover { border-color: rgba(34, 197, 94, 0.3); background: rgba(34, 197, 94, 0.02); }
+        .card-link:hover { transform: translateY(-10px); border-color: var(--gold); background: rgba(30, 60, 40, 0.9); }
+        .card-link h3 { color: var(--gold); margin-bottom: 15px; font-size: 1.4rem; }
 
-        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; }
+        /* ABA: A IDEIA (DETALHADA) */
+        .story-section { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: start; margin-top: 40px; }
+        .timeline { border-left: 2px solid var(--gold); padding-left: 25px; margin-top: 30px; }
+        .timeline-item { margin-bottom: 30px; position: relative; }
+        .timeline-item::before { content: ""; position: absolute; left: -31px; top: 5px; width: 10px; height: 10px; background: var(--gold); border-radius: 50%; }
+        .timeline-item h4 { color: var(--gold); font-size: 1.1rem; }
 
-        /* --- MODELOS --- */
-        .model-header { margin-bottom: 20px; }
-        .model-tag { background: rgba(212, 175, 55, 0.1); color: var(--gold); padding: 6px 14px; border-radius: 100px; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
-        .model-card h3 { font-size: 1.8rem; margin: 15px 0; }
-        .feature-list { list-style: none; margin-top: 24px; }
-        .feature-list li { color: var(--text-muted); margin-bottom: 12px; display: flex; align-items: center; gap: 10px; font-size: 0.95rem; }
-        .feature-list li::before { content: "→"; color: var(--primary); font-weight: 800; }
+        /* ABA: PROTÓTIPO (DASHBOARD TÉCNICO) */
+        .dashboard { background: rgba(0,0,0,0.4); border-radius: 30px; padding: 40px; border: 1px solid var(--border); }
+        .sensor-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 30px; }
+        .sensor-box { background: var(--primary-green); padding: 20px; border-radius: 15px; text-align: center; border: 1px solid rgba(255,255,255,0.05); }
+        .status-bar { height: 10px; background: #111; border-radius: 5px; margin: 15px 0; overflow: hidden; }
+        .status-fill { height: 100%; background: var(--accent-green); transition: 1s; }
 
-        /* --- PROTÓTIPO --- */
-        .dashboard { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
-        .monitor-panel { background: #000; border-radius: 24px; padding: 30px; border: 1px solid var(--border); }
-        .stat-bar { height: 6px; background: #1a1a1a; border-radius: 3px; margin: 15px 0 25px; }
-        .stat-fill { height: 100%; border-radius: 3px; background: var(--primary); box-shadow: 0 0 20px var(--primary); transition: width 2s ease-out; }
+        /* FOOTER */
+        footer { text-align: center; padding: 80px 0; border-top: 1px solid var(--border); margin-top: 100px; }
 
-        /* --- FOOTER --- */
-        footer { border-top: 1px solid var(--border); padding: 80px 8%; text-align: center; }
-        .footer-nav { display: flex; justify-content: center; gap: 30px; margin-bottom: 30px; color: var(--text-muted); font-size: 0.8rem; }
-
-        /* --- MOBILE --- */
         @media (max-width: 768px) {
-            .nav-links { display: none; }
-            h1 { font-size: 2.5rem; }
-            .dashboard { grid-template-columns: 1fr; }
-            .hero-text { text-align: left; }
+            .hero h1 { font-size: 2.2rem; }
+            .story-section { grid-template-columns: 1fr; }
+            .sensor-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
 
     <nav>
-        <div class="logo" onclick="showTab('inicio')">Green<span>Mind</span></div>
+        <div class="logo" onclick="showTab('inicio')">🌿 GreenMind</div>
         <ul class="nav-links">
-            <li onclick="showTab('inicio')" id="link-inicio" class="active">Início</li>
-            <li onclick="showTab('ideia')" id="link-ideia">A Ideia</li>
-            <li onclick="showTab('modelos')" id="link-modelos">Modelos</li>
-            <li onclick="showTab('prototipo')" id="link-prototipo">Protótipo</li>
+            <li onclick="showTab('inicio')" id="link-inicio" class="active">Home</li>
+            <li onclick="showTab('ideia')" id="link-ideia">A Trajetória</li>
+            <li onclick="showTab('modelos')" id="link-modelos">Produtos</li>
+            <li onclick="showTab('prototipo')" id="link-prototipo">Monitoramento</li>
         </ul>
     </nav>
 
     <div class="container">
         
         <section id="inicio" class="tab-content active">
-            <div class="hero-text">
-                <h1 class="gradient-text">Cultive o amanhã,<br>hoje mesmo.</h1>
-                <p class="lead">A GreenMind utiliza Inteligência Artificial para que você possa ter a natureza por perto, sem o peso da rotina. Praticidade e tecnologia unidas pelo seu bem-estar.</p>
+            <div class="hero">
+                <h1>Bem-vindo à <span style="color: var(--gold);">Revolução Verde</span></h1>
+                <p>Onde a automação encontra a natureza para criar um futuro sustentável dentro da sua casa.</p>
             </div>
-            <div class="card" style="text-align: center;">
-                <h2 style="margin-bottom: 20px;">Sustentabilidade sem esforço.</h2>
-                <p style="color: var(--text-muted); max-width: 600px; margin: 0 auto;">Nossa tecnologia monitora e irriga automaticamente, garantindo que suas plantas cresçam saudáveis enquanto você foca no que importa.</p>
+            
+            <div class="main-grid">
+                <div class="card-link" onclick="showTab('ideia')">
+                    <h3>Nossa Origem</h3>
+                    <p>Conheça como saímos do Senac Blumenau para nos tornarmos destaque na Jornada inicIA.</p>
+                    <small style="color: var(--gold); margin-top: 15px; display: block;">Ver história →</small>
+                </div>
+                <div class="card-link" onclick="showTab('modelos')">
+                    <h3>Catálogo de Modelos</h3>
+                    <p>Sistemas modulares projetados para pequenos apartamentos e grandes entusiastas.</p>
+                    <small style="color: var(--gold); margin-top: 15px; display: block;">Explorar modelos →</small>
+                </div>
+                <div class="card-link" onclick="showTab('prototipo')">
+                    <h3>Tecnologia em Tempo Real</h3>
+                    <p>Veja como nossos sensores e IA processam dados para manter sua horta viva.</p>
+                    <small style="color: var(--gold); margin-top: 15px; display: block;">Ver dashboard →</small>
+                </div>
             </div>
         </section>
 
         <section id="ideia" class="tab-content">
-            <div class="hero-text">
-                <h1 style="font-size: 3rem;">A Tecnologia por trás</h1>
-                <p class="lead">Entenda como transformamos vasos de plantas em dispositivos inteligentes e autônomos.</p>
-            </div>
-            <div class="grid-3">
-                <div class="card">
-                    <span style="font-size: 2rem;">💧</span>
-                    <h3 style="margin: 15px 0;">Umidade Precisa</h3>
-                    <p style="font-size: 0.9rem; color: var(--text-muted);">Sensores capacitivos que entendem o solo em nível celular, evitando o excesso ou falta de água.</p>
+            <div class="story-section">
+                <div>
+                    <h2 style="font-size: 2.5rem; color: var(--gold);">Muito além de um vaso inteligente.</h2>
+                    <p style="margin-top: 20px;">A GreenMind nasceu no Ensino Médio da Faculdade SENAC Blumenau. O que começou como um projeto técnico de Programação de Jogos evoluiu para uma startup de hardware e software voltada à sustentabilidade.</p>
+                    <p style="margin-top: 15px;">Identificamos que 51% das pessoas em centros urbanos querem cultivar em casa, mas a rotina impede. Nossa missão é remover essa barreira com tecnologia de baixo custo e alta eficiência.</p>
+                    
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <h4>2024 - Feira de Jovens Cientistas</h4>
+                            <p>Validação do primeiro protótipo funcional de irrigação automatizada.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <h4>2025 - Jornada inicIA (WK Sistemas)</h4>
+                            <p>3º lugar na competição, refinando o modelo de negócio e integrando Inteligência Artificial.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <h4>Futuro - Conexão WK</h4>
+                            <p>Escalabilidade para modelos B2B em condomínios e escolas.</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="card">
-                    <span style="font-size: 2rem;">🧠</span>
-                    <h3 style="margin: 15px 0;">IA Integrada</h3>
-                    <p style="font-size: 0.9rem; color: var(--text-muted);">Algoritmos que aprendem com o ambiente e ajustam a rega de acordo com a espécie e clima.</p>
-                </div>
-                <div class="card">
-                    <span style="font-size: 2rem;">📱</span>
-                    <h3 style="margin: 15px 0;">Controle Total</h3>
-                    <p style="font-size: 0.9rem; color: var(--text-muted);">Acompanhe o crescimento e receba alertas personalizados diretamente no seu smartphone.</p>
+                <div class="card" style="background: var(--primary-green); padding: 30px; border-radius: 20px; border: 1px solid var(--gold);">
+                    <h3 style="color: var(--gold);">Refinamento Técnico</h3>
+                    <ul style="list-style: none; margin-top: 15px;">
+                        <li style="margin-bottom: 15px;">✅ <strong>Uso de Sensores Capacitivos:</strong> Evitam a corrosão presente nos sensores comuns, aumentando a vida útil do produto.</li>
+                        <li style="margin-bottom: 15px;">✅ <strong>Programação Embarcada:</strong> Otimização via ESP32 para baixo consumo de energia e Wi-Fi estável.</li>
+                        <li style="margin-bottom: 15px;">✅ <strong>IA Preditiva:</strong> O sistema não apenas rega, ele prevê a necessidade baseada na previsão do tempo e histórico.</li>
+                    </ul>
                 </div>
             </div>
         </section>
 
         <section id="modelos" class="tab-content">
-            <div class="hero-text">
-                <h1>Nossa Linha</h1>
-                <p class="lead">Do pequeno apartamento à horta completa. Escolha o tamanho do seu impacto.</p>
-            </div>
-            <div class="grid-3">
-                <div class="card model-card">
-                    <span class="model-tag">Starter</span>
-                    <h3>Individual</h3>
-                    <ul class="feature-list">
-                        <li>Foco em 01 espécie</li>
-                        <li>Design Minimalista</li>
-                        <li>Ideal para mesas de escritório</li>
-                    </ul>
+            <h2 style="text-align: center; margin-bottom: 50px;">Linha de Produtos GreenMind</h2>
+            <div class="main-grid">
+                <div class="card-link" style="cursor: default;">
+                    <div style="font-size: 0.7rem; background: var(--accent-green); display: inline-block; padding: 2px 8px; border-radius: 4px; margin-bottom: 10px;">INDIVIDUAL</div>
+                    <h3>Modelo Solo</h3>
+                    <p>Vaso individual com monitoramento completo. Perfeito para temperos como Manjericão e Salsinha.</p>
                 </div>
-                <div class="card model-card" style="border-color: var(--gold);">
-                    <span class="model-tag">Duo Pack</span>
-                    <h3>Vaso Duplo</h3>
-                    <ul class="feature-list">
-                        <li>Cultivo de 02 espécies</li>
-                        <li>Monitoramento independente</li>
-                        <li>Otimização de espaço</li>
-                    </ul>
+                <div class="card-link" style="cursor: default; border-color: var(--gold);">
+                    <div style="font-size: 0.7rem; background: var(--gold); color: #000; display: inline-block; padding: 2px 8px; border-radius: 4px; margin-bottom: 10px;">MAIS POPULAR</div>
+                    <h3>Modelo Duo</h3>
+                    <p>Cultive duas espécies com sensores independentes. Ideal para a dupla clássica: Alecrim e Tomilho.</p>
                 </div>
-                <div class="card model-card">
-                    <span class="model-tag">Garden</span>
-                    <h3>Horta Master</h3>
-                    <ul class="feature-list">
-                        <li>Capacidade para 04 plantas</li>
-                        <li>Autonomia máxima</li>
-                        <li>Sistema completo de sensores</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="card" style="margin-top: 50px; border-style: dashed;">
-                <h3 style="margin-bottom: 25px; color: var(--gold);">Variedade para o seu paladar</h3>
-                <div style="display: flex; flex-wrap: wrap; gap: 12px;">
-                    <span class="model-tag" style="background: rgba(255,255,255,0.05); color: #fff;">Manjericão</span>
-                    <span class="model-tag" style="background: rgba(255,255,255,0.05); color: #fff;">Alecrim</span>
-                    <span class="model-tag" style="background: rgba(255,255,255,0.05); color: #fff;">Salsinha</span>
-                    <span class="model-tag" style="background: rgba(255,255,255,0.05); color: #fff;">Cebolinha</span>
-                    <span class="model-tag" style="background: rgba(255,255,255,0.05); color: #fff;">Orégano</span>
-                    <span class="model-tag" style="background: rgba(255,255,255,0.05); color: #fff;">Rúcula</span>
+                <div class="card-link" style="cursor: default;">
+                    <div style="font-size: 0.7rem; background: var(--accent-green); display: inline-block; padding: 2px 8px; border-radius: 4px; margin-bottom: 10px;">PREMIUM</div>
+                    <h3>Modelo Family (4)</h3>
+                    <p>Uma mini horta completa. Quatro compartimentos modulares com irrigação setorial.</p>
                 </div>
             </div>
         </section>
 
         <section id="prototipo" class="tab-content">
-            <div class="hero-text">
-                <h1>Monitoramento Ativo</h1>
-                <p class="lead">Dados reais coletados pelo nosso protótipo em validação.</p>
-            </div>
             <div class="dashboard">
-                <div class="monitor-panel">
-                    <div style="display: flex; justify-content: space-between;">
-                        <h4 style="color: var(--text-muted);">Umidade do Solo</h4>
-                        <span style="color: var(--primary);">82%</span>
-                    </div>
-                    <div class="stat-bar"><div class="stat-fill" style="width: 82%;"></div></div>
-                    <p style="font-size: 0.8rem; color: var(--text-muted);">Status: Solo hidratado. Próxima rega estimada em 14h.</p>
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <h2>Monitoramento GreenMind v1.2</h2>
+                    <span style="color: var(--gold);">ID do Dispositivo: #GM-001</span>
                 </div>
-                <div class="monitor-panel">
-                    <div style="display: flex; justify-content: space-between;">
-                        <h4 style="color: var(--text-muted);">Exposição Solar</h4>
-                        <span style="color: var(--gold);">65%</span>
+                <div class="sensor-grid">
+                    <div class="sensor-box">
+                        <small>Umidade do Solo</small>
+                        <div style="font-size: 1.5rem; font-weight: 800; color: var(--accent-green);">74%</div>
+                        <div class="status-bar"><div class="status-fill" style="width: 74%;"></div></div>
+                        <small style="color: #888;">Nível Ideal</small>
                     </div>
-                    <div class="stat-bar"><div class="stat-fill" style="width: 65%; background: var(--gold); box-shadow: 0 0 20px var(--gold);"></div></div>
-                    <p style="font-size: 0.8rem; color: var(--text-muted);">Status: Luz ideal para o desenvolvimento da Rúcula.</p>
+                    <div class="sensor-box">
+                        <small>Exposição Solar</small>
+                        <div style="font-size: 1.5rem; font-weight: 800; color: var(--gold);">88%</div>
+                        <div class="status-bar"><div class="status-fill" style="width: 88%; background: var(--gold);"></div></div>
+                        <small style="color: #888;">Captação Ativa</small>
+                    </div>
+                    <div class="sensor-box">
+                        <small>Reservatório</small>
+                        <div style="font-size: 1.5rem; font-weight: 800; color: #3498db;">45%</div>
+                        <div class="status-bar"><div class="status-fill" style="width: 45%; background: #3498db;"></div></div>
+                        <small style="color: #888;">Próxima Recarga: 3 dias</small>
+                    </div>
                 </div>
-            </div>
-            <div class="card" style="margin-top: 30px; background: transparent;">
-                <p style="font-size: 0.9rem; text-align: center;">Nosso protótipo foca na prova de que a tecnologia de baixo custo pode gerar alta eficiência sustentável.</p>
+                <p style="margin-top: 30px; font-size: 0.9rem; color: #aaa;">Os dados acima são coletados via sensores embarcados. A Inteligência Artificial analisa se a umidade está coerente com a luminosidade para evitar o apodrecimento das raízes.</p>
             </div>
         </section>
 
     </div>
 
     <footer>
-        <div class="logo" style="justify-content: center; margin-bottom: 30px;">Green<span>Mind</span></div>
-        <div class="footer-nav">
-            <span>Instagram</span>
-            <span>LinkedIn</span>
-            <span>Documentação</span>
-        </div>
-        <p style="font-size: 0.7rem; color: var(--text-muted);">© 2026 GreenMind. Tecnologia que cultiva o futuro.</p>
+        <div class="logo" style="justify-content: center;">🌿 GreenMind</div>
+        <p style="font-size: 0.8rem; color: #666; margin-top: 20px;">
+            Fundadores: Isabelle Duarte Belo, Richard Wagenknecht, Sarah Julia Antunes Velho<br>
+            Desenvolvido originalmente no ambiente SENAC Blumenau<br>
+            © 2026 - Tecnologia que cultiva o futuro.
+        </p>
     </footer>
 
     <script>
@@ -236,7 +224,9 @@
             document.querySelectorAll('.nav-links li').forEach(l => l.classList.remove('active'));
             
             document.getElementById(tabId).classList.add('active');
-            document.getElementById('link-' + tabId).classList.add('active');
+            // Marca o link como ativo apenas se ele estiver no menu (evita erro ao clicar nos cards da home)
+            const activeLink = document.getElementById('link-' + tabId);
+            if(activeLink) activeLink.classList.add('active');
             
             window.scrollTo({top: 0, behavior: 'smooth'});
         }
