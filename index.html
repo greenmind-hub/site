@@ -7,13 +7,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-green: #142819; /* Verde original das suas imagens */
+            --primary-green: #142819; 
             --accent-green: #2e7d32;
             --gold: #d4af37;
             --dark-bg: #050a06;
             --text-light: #e0e0e0;
-            --glass: rgba(20, 40, 25, 0.85);
-            --border: rgba(212, 175, 55, 0.2);
+            --glass: rgba(20, 40, 25, 0.9);
+            --border: rgba(212, 175, 55, 0.25);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
@@ -21,66 +21,93 @@
         body {
             background-color: var(--dark-bg);
             color: var(--text-light);
-            background-image: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?q=80&w=2000');
+            /* COLOQUE AQUI UMA IMAGEM DE FUNDO (TEXTURA DE FOLHAS ESCURAS) */
+            background-image: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), url('SUA_IMAGEM_DE_FUNDO_AQUI.jpg');
             background-size: cover;
             background-attachment: fixed;
             line-height: 1.6;
         }
 
-        /* NAVEGAÇÃO */
         nav {
             display: flex; justify-content: space-between; align-items: center;
-            padding: 20px 8%; background: rgba(5, 10, 6, 0.95);
-            backdrop-filter: blur(10px); position: fixed; width: 100%; top: 0; z-index: 1000;
+            padding: 20px 8%; background: rgba(5, 10, 6, 0.98);
+            backdrop-filter: blur(15px); position: fixed; width: 100%; top: 0; z-index: 1000;
             border-bottom: 1px solid var(--border);
         }
 
         .logo { font-weight: 800; font-size: 1.5rem; color: var(--gold); display: flex; align-items: center; gap: 10px; cursor: pointer; }
         .nav-links { display: flex; list-style: none; gap: 30px; }
-        .nav-links li { cursor: pointer; font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; transition: 0.3s; color: #aaa; }
+        .nav-links li { cursor: pointer; font-size: 0.85rem; font-weight: 600; text-transform: uppercase; transition: 0.3s; color: #888; }
         .nav-links li:hover, .nav-links li.active { color: var(--gold); }
 
         .container { max-width: 1200px; margin: 120px auto 60px; padding: 0 20px; }
 
-        /* TRANSIÇÃO */
-        .tab-content { display: none; animation: fadeIn 0.6s ease; }
+        .tab-content { display: none; animation: fadeIn 0.7s ease-out; }
         .tab-content.active { display: block; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* HERO & CARDS */
-        .hero { text-align: center; padding: 40px 0 80px; }
-        .hero h1 { font-size: 3.5rem; margin-bottom: 20px; color: #fff; }
-        .hero p { font-size: 1.2rem; color: #ccc; max-width: 700px; margin: 0 auto; }
-
-        .main-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
-        .card-link { 
-            background: var(--glass); border: 1px solid var(--border); border-radius: 20px; 
-            padding: 40px; transition: 0.4s; cursor: pointer; text-decoration: none; color: inherit;
+        /* BENTO GRID LAYOUT */
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(2, 300px);
+            gap: 20px;
+            margin-top: 40px;
         }
-        .card-link:hover { transform: translateY(-10px); border-color: var(--gold); background: rgba(30, 60, 40, 0.9); }
-        .card-link h3 { color: var(--gold); margin-bottom: 15px; font-size: 1.4rem; }
 
-        /* ABA: A IDEIA (DETALHADA) */
-        .story-section { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: start; margin-top: 40px; }
-        .timeline { border-left: 2px solid var(--gold); padding-left: 25px; margin-top: 30px; }
-        .timeline-item { margin-bottom: 30px; position: relative; }
-        .timeline-item::before { content: ""; position: absolute; left: -31px; top: 5px; width: 10px; height: 10px; background: var(--gold); border-radius: 50%; }
-        .timeline-item h4 { color: var(--gold); font-size: 1.1rem; }
+        .bento-item {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 30px;
+            position: relative;
+            overflow: hidden;
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
 
-        /* ABA: PROTÓTIPO (DASHBOARD TÉCNICO) */
-        .dashboard { background: rgba(0,0,0,0.4); border-radius: 30px; padding: 40px; border: 1px solid var(--border); }
-        .sensor-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 30px; }
-        .sensor-box { background: var(--primary-green); padding: 20px; border-radius: 15px; text-align: center; border: 1px solid rgba(255,255,255,0.05); }
-        .status-bar { height: 10px; background: #111; border-radius: 5px; margin: 15px 0; overflow: hidden; }
-        .status-fill { height: 100%; background: var(--accent-green); transition: 1s; }
+        .bento-item:hover { transform: scale(1.02); border-color: var(--gold); background: rgba(30, 60, 40, 0.95); }
 
-        /* FOOTER */
-        footer { text-align: center; padding: 80px 0; border-top: 1px solid var(--border); margin-top: 100px; }
+        .large { grid-column: span 2; grid-row: span 2; }
+        .wide { grid-column: span 2; }
 
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 2.2rem; }
-            .story-section { grid-template-columns: 1fr; }
-            .sensor-grid { grid-template-columns: 1fr; }
+        .bento-item img {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            object-fit: cover;
+            z-index: -1;
+            opacity: 0.4;
+            transition: 0.5s;
+        }
+        .bento-item:hover img { opacity: 0.6; transform: scale(1.1); }
+
+        .bento-item h3 { color: var(--gold); font-size: 1.6rem; margin-bottom: 10px; }
+        .bento-item p { font-size: 0.95rem; color: #ccc; }
+
+        /* ESTILO SEÇÃO SOBRE */
+        .story-container { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 40px; }
+        .img-placeholder { 
+            width: 100%; height: 400px; background: var(--primary-green); 
+            border-radius: 24px; border: 1px solid var(--gold); overflow: hidden;
+        }
+        .img-placeholder img { width: 100%; height: 100%; object-fit: cover; }
+
+        /* DASHBOARD */
+        .dashboard-box { 
+            background: var(--glass); border: 1px solid var(--border); border-radius: 24px; padding: 40px;
+        }
+        .sensor-card { background: rgba(0,0,0,0.3); padding: 20px; border-radius: 15px; border: 1px solid rgba(255,255,255,0.05); }
+
+        footer { text-align: center; padding: 60px 0; border-top: 1px solid var(--border); margin-top: 80px; color: #666; font-size: 0.8rem; }
+
+        @media (max-width: 900px) {
+            .bento-grid { grid-template-columns: 1fr; grid-template-rows: auto; }
+            .large, .wide { grid-column: span 1; grid-row: span 1; }
+            .story-container { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -91,7 +118,7 @@
         <ul class="nav-links">
             <li onclick="showTab('inicio')" id="link-inicio" class="active">Home</li>
             <li onclick="showTab('ideia')" id="link-ideia">A Trajetória</li>
-            <li onclick="showTab('modelos')" id="link-modelos">Produtos</li>
+            <li onclick="showTab('modelos')" id="link-modelos">Modelos</li>
             <li onclick="showTab('prototipo')" id="link-prototipo">Monitoramento</li>
         </ul>
     </nav>
@@ -99,111 +126,93 @@
     <div class="container">
         
         <section id="inicio" class="tab-content active">
-            <div class="hero">
-                <h1>Bem-vindo à <span style="color: var(--gold);">Revolução Verde</span></h1>
-                <p>Onde a automação encontra a natureza para criar um futuro sustentável dentro da sua casa.</p>
-            </div>
+            <h1 style="font-size: 3rem; text-align: center; margin-bottom: 10px;">O Futuro é <span style="color: var(--gold);">Verde</span></h1>
+            <p style="text-align: center; color: #aaa; margin-bottom: 40px;">Tecnologia, Sustentabilidade e Automação em um só lugar.</p>
             
-            <div class="main-grid">
-                <div class="card-link" onclick="showTab('ideia')">
-                    <h3>Nossa Origem</h3>
-                    <p>Conheça como saímos do Senac Blumenau para nos tornarmos destaque na Jornada inicIA.</p>
-                    <small style="color: var(--gold); margin-top: 15px; display: block;">Ver história →</small>
+            <div class="bento-grid">
+                <div class="bento-item large" onclick="showTab('ideia')">
+                    <img src="URL_IMAGEM_TRAJETORIA.jpg" alt="">
+                    <h3>Nossa História</h3>
+                    <p>Do Senac Blumenau para a conquista da Jornada inicIA. Conheça como evoluímos de um projeto escolar para uma startup premiada.</p>
                 </div>
-                <div class="card-link" onclick="showTab('modelos')">
-                    <h3>Catálogo de Modelos</h3>
-                    <p>Sistemas modulares projetados para pequenos apartamentos e grandes entusiastas.</p>
-                    <small style="color: var(--gold); margin-top: 15px; display: block;">Explorar modelos →</small>
+
+                <div class="bento-item wide" onclick="showTab('modelos')">
+                    <img src="URL_IMAGEM_HORTA.jpg" alt="">
+                    <h3>Hortas Inteligentes</h3>
+                    <p>Sistemas modulares para 1, 2 ou 4 plantas com irrigação independente.</p>
                 </div>
-                <div class="card-link" onclick="showTab('prototipo')">
-                    <h3>Tecnologia em Tempo Real</h3>
-                    <p>Veja como nossos sensores e IA processam dados para manter sua horta viva.</p>
-                    <small style="color: var(--gold); margin-top: 15px; display: block;">Ver dashboard →</small>
+
+                <div class="bento-item" onclick="showTab('prototipo')">
+                    <img src="URL_IMAGEM_SENSORES.jpg" alt="">
+                    <h3>Sensores</h3>
+                    <p>Tecnologia de umidade e luz.</p>
+                </div>
+
+                <div class="bento-item" onclick="showTab('prototipo')">
+                    <img src="URL_IMAGEM_APP.jpg" alt="">
+                    <h3>Inteligência</h3>
+                    <p>Análise preditiva de rega.</p>
                 </div>
             </div>
         </section>
 
         <section id="ideia" class="tab-content">
-            <div class="story-section">
+            <div class="story-container">
                 <div>
-                    <h2 style="font-size: 2.5rem; color: var(--gold);">Muito além de um vaso inteligente.</h2>
-                    <p style="margin-top: 20px;">A GreenMind nasceu no Ensino Médio da Faculdade SENAC Blumenau. O que começou como um projeto técnico de Programação de Jogos evoluiu para uma startup de hardware e software voltada à sustentabilidade.</p>
-                    <p style="margin-top: 15px;">Identificamos que 51% das pessoas em centros urbanos querem cultivar em casa, mas a rotina impede. Nossa missão é remover essa barreira com tecnologia de baixo custo e alta eficiência.</p>
+                    <h2 style="color: var(--gold); font-size: 2.2rem;">Inovação que nasceu na sala de aula.</h2>
+                    <p style="margin-top: 20px;">A GreenMind surgiu no curso de <strong>Programação de Jogos Digitais do SENAC Blumenau</strong>. O que era um desafio técnico transformou-se em uma solução real para moradores de apartamentos que sofrem com a rotina agitada.</p>
+                    <p style="margin-top: 15px;">Ao participarmos da <strong>Feira de Jovens Cientistas 2024</strong> e posteriormente da <strong>Jornada inicIA (WK Sistemas)</strong>, onde conquistamos o 3º lugar, refinamos nossa tecnologia para usar sensores capacitivos e IA.</p>
                     
-                    <div class="timeline">
-                        <div class="timeline-item">
-                            <h4>2024 - Feira de Jovens Cientistas</h4>
-                            <p>Validação do primeiro protótipo funcional de irrigação automatizada.</p>
-                        </div>
-                        <div class="timeline-item">
-                            <h4>2025 - Jornada inicIA (WK Sistemas)</h4>
-                            <p>3º lugar na competição, refinando o modelo de negócio e integrando Inteligência Artificial.</p>
-                        </div>
-                        <div class="timeline-item">
-                            <h4>Futuro - Conexão WK</h4>
-                            <p>Escalabilidade para modelos B2B em condomínios e escolas.</p>
-                        </div>
+                    <div style="margin-top: 30px; border-left: 2px solid var(--gold); padding-left: 20px;">
+                        <h4 style="color: var(--gold);">Nosso Diferencial</h4>
+                        <p style="font-size: 0.9rem;">Diferente de sistemas básicos, nossa IA cruza dados de umidade, luz e previsão do tempo para economizar até 40% mais água que irrigações comuns.</p>
                     </div>
                 </div>
-                <div class="card" style="background: var(--primary-green); padding: 30px; border-radius: 20px; border: 1px solid var(--gold);">
-                    <h3 style="color: var(--gold);">Refinamento Técnico</h3>
-                    <ul style="list-style: none; margin-top: 15px;">
-                        <li style="margin-bottom: 15px;">✅ <strong>Uso de Sensores Capacitivos:</strong> Evitam a corrosão presente nos sensores comuns, aumentando a vida útil do produto.</li>
-                        <li style="margin-bottom: 15px;">✅ <strong>Programação Embarcada:</strong> Otimização via ESP32 para baixo consumo de energia e Wi-Fi estável.</li>
-                        <li style="margin-bottom: 15px;">✅ <strong>IA Preditiva:</strong> O sistema não apenas rega, ele prevê a necessidade baseada na previsão do tempo e histórico.</li>
-                    </ul>
+                <div class="img-placeholder">
+                    <img src="URL_DA_SUA_IMAGEM_AQUI.jpg" alt="Protótipo Original">
                 </div>
             </div>
         </section>
 
         <section id="modelos" class="tab-content">
-            <h2 style="text-align: center; margin-bottom: 50px;">Linha de Produtos GreenMind</h2>
-            <div class="main-grid">
-                <div class="card-link" style="cursor: default;">
-                    <div style="font-size: 0.7rem; background: var(--accent-green); display: inline-block; padding: 2px 8px; border-radius: 4px; margin-bottom: 10px;">INDIVIDUAL</div>
-                    <h3>Modelo Solo</h3>
-                    <p>Vaso individual com monitoramento completo. Perfeito para temperos como Manjericão e Salsinha.</p>
+            <h2 style="text-align: center; margin-bottom: 40px; color: var(--gold);">Escolha o seu Kit</h2>
+            <div class="bento-grid" style="grid-template-rows: 400px;">
+                <div class="bento-item">
+                    <img src="IMAGEM_MODELO_1.jpg" alt="">
+                    <h3>Solo (1)</h3>
+                    <p>Perfeito para quem está começando.</p>
                 </div>
-                <div class="card-link" style="cursor: default; border-color: var(--gold);">
-                    <div style="font-size: 0.7rem; background: var(--gold); color: #000; display: inline-block; padding: 2px 8px; border-radius: 4px; margin-bottom: 10px;">MAIS POPULAR</div>
-                    <h3>Modelo Duo</h3>
-                    <p>Cultive duas espécies com sensores independentes. Ideal para a dupla clássica: Alecrim e Tomilho.</p>
+                <div class="bento-item" style="border-color: var(--gold);">
+                    <img src="IMAGEM_MODELO_2.jpg" alt="">
+                    <h3>Duo (2)</h3>
+                    <p>O equilíbrio entre tempero e praticidade.</p>
                 </div>
-                <div class="card-link" style="cursor: default;">
-                    <div style="font-size: 0.7rem; background: var(--accent-green); display: inline-block; padding: 2px 8px; border-radius: 4px; margin-bottom: 10px;">PREMIUM</div>
-                    <h3>Modelo Family (4)</h3>
-                    <p>Uma mini horta completa. Quatro compartimentos modulares com irrigação setorial.</p>
+                <div class="bento-item wide">
+                    <img src="IMAGEM_MODELO_4.jpg" alt="">
+                    <h3>Family (4)</h3>
+                    <p>Uma horta completa e automatizada.</p>
                 </div>
             </div>
         </section>
 
         <section id="prototipo" class="tab-content">
-            <div class="dashboard">
-                <div style="display: flex; justify-content: space-between; align-items: center;">
-                    <h2>Monitoramento GreenMind v1.2</h2>
-                    <span style="color: var(--gold);">ID do Dispositivo: #GM-001</span>
-                </div>
-                <div class="sensor-grid">
-                    <div class="sensor-box">
-                        <small>Umidade do Solo</small>
-                        <div style="font-size: 1.5rem; font-weight: 800; color: var(--accent-green);">74%</div>
-                        <div class="status-bar"><div class="status-fill" style="width: 74%;"></div></div>
-                        <small style="color: #888;">Nível Ideal</small>
+            <div class="dashboard-box">
+                <h2 style="color: var(--gold); margin-bottom: 20px;">Painel do Dispositivo</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
+                    <div class="sensor-card">
+                        <small>Umidade Solo</small>
+                        <h3 style="color: var(--accent-green);">72%</h3>
                     </div>
-                    <div class="sensor-box">
-                        <small>Exposição Solar</small>
-                        <div style="font-size: 1.5rem; font-weight: 800; color: var(--gold);">88%</div>
-                        <div class="status-bar"><div class="status-fill" style="width: 88%; background: var(--gold);"></div></div>
-                        <small style="color: #888;">Captação Ativa</small>
+                    <div class="sensor-card">
+                        <small>Luz Solar</small>
+                        <h3 style="color: var(--gold);">85%</h3>
                     </div>
-                    <div class="sensor-box">
-                        <small>Reservatório</small>
-                        <div style="font-size: 1.5rem; font-weight: 800; color: #3498db;">45%</div>
-                        <div class="status-bar"><div class="status-fill" style="width: 45%; background: #3498db;"></div></div>
-                        <small style="color: #888;">Próxima Recarga: 3 dias</small>
+                    <div class="sensor-card">
+                        <small>Status IA</small>
+                        <h3 style="color: #fff;">Analisando...</h3>
                     </div>
                 </div>
-                <p style="margin-top: 30px; font-size: 0.9rem; color: #aaa;">Os dados acima são coletados via sensores embarcados. A Inteligência Artificial analisa se a umidade está coerente com a luminosidade para evitar o apodrecimento das raízes.</p>
+                <p style="margin-top: 30px; font-size: 0.9rem; color: #888;">Hardware baseado em ESP32 com integração via MQTT para o aplicativo GreenMind.</p>
             </div>
         </section>
 
@@ -211,11 +220,8 @@
 
     <footer>
         <div class="logo" style="justify-content: center;">🌿 GreenMind</div>
-        <p style="font-size: 0.8rem; color: #666; margin-top: 20px;">
-            Fundadores: Isabelle Duarte Belo, Richard Wagenknecht, Sarah Julia Antunes Velho<br>
-            Desenvolvido originalmente no ambiente SENAC Blumenau<br>
-            © 2026 - Tecnologia que cultiva o futuro.
-        </p>
+        <p>Isabelle Duarte Belo | Richard Wagenknecht | Sarah Julia Antunes Velho</p>
+        <p>Senac Blumenau © 2026</p>
     </footer>
 
     <script>
@@ -224,9 +230,8 @@
             document.querySelectorAll('.nav-links li').forEach(l => l.classList.remove('active'));
             
             document.getElementById(tabId).classList.add('active');
-            // Marca o link como ativo apenas se ele estiver no menu (evita erro ao clicar nos cards da home)
-            const activeLink = document.getElementById('link-' + tabId);
-            if(activeLink) activeLink.classList.add('active');
+            const link = document.getElementById('link-' + tabId);
+            if(link) link.classList.add('active');
             
             window.scrollTo({top: 0, behavior: 'smooth'});
         }
