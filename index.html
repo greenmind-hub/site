@@ -282,49 +282,87 @@
             </div>
         </section>
 
-        <section id="prototipo" class="tab-content">
-            <div class="stats-grid" style="max-width: 800px; margin: auto;">
-                <div class="stat-card">
-                    <small>Umidade Solo</small>
-                    <h3 style="color: var(--accent-green);">72%</h3>
+      <section id="prototipo" class="tab-content">
+            <div class="section-header">
+                <h2>Monitoramento da Horta</h2>
+                <p>Acompanhe crescimento, status, economia hídrica e muito mais em tempo real.</p>
+            </div>
+
+            <div class="monitor-card">
+                <div class="monitor-header">
+                    <div>
+                        <h3>Lado Esquerdo</h3>
+                        <span>Salsinha</span>
+                    </div>
+                    <div class="status-dot green"></div>
                 </div>
-                <div class="stat-card">
-                    <small>Luz Solar</small>
-                    <h3 style="color: var(--gold);">85%</h3>
+                
+                <div class="progress-container">
+                    <div class="progress-info">
+                        <span class="percent green">80%</span>
+                        <span class="label">Ideal</span>
+                    </div>
+                    <div class="progress-bar-bg">
+                        <div class="progress-bar-fill green"></div>
+                    </div>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-box">Temperatura</div>
+                    <div class="stat-box">Luz</div>
+                    <div class="stat-box">Última Rega</div>
                 </div>
             </div>
+
+            <div class="monitor-card">
+                <div class="monitor-header">
+                    <div>
+                        <h3>Lado Direito</h3>
+                        <span>Alecrim</span>
+                    </div>
+                    <div class="status-dot orange"></div>
+                </div>
+                
+                <div class="progress-container">
+                    <div class="progress-info">
+                        <span class="percent orange">67%</span>
+                        <span class="label">Média</span>
+                    </div>
+                    <div class="progress-bar-bg">
+                        <div class="progress-bar-fill orange"></div>
+                    </div>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-box">Temperatura</div>
+                    <div class="stat-box">Luz</div>
+                    <div class="stat-box">Última Rega</div>
+                </div>
+            </div>
+
         </section>
 
     </div>
 
     <footer>
-        <div class="logo" style="justify-content: center; display: flex;">🌿 GreenMind</div>
-        <p>Isabelle | Richard | Sarah</p>
-        <p>Senac Blumenau © 2026</p>
+        <div class="logo" style="justify-content: center; margin-bottom: 10px;">🌿 GreenMind</div>
+        <p>Isabelle Duarte Belo | Richard Wagenknecht | Sarah Julia Antunes Velho</p>
+        <p style="margin-top: 5px;">Projeto desenvolvido no Senac Blumenau © 2026</p>
     </footer>
 
     <script>
-        // Função para selecionar as opções no formulário de pesquisa
-        function select(btn, name, value){
-            const group = btn.parentElement;
-            group.querySelectorAll('button').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            group.parentElement.querySelector('input').value = value;
-        }
-
-        // Função para trocar as abas do menu
         function showTab(tabId) {
+            // Remove a classe ativa de todos os conteúdos e links
             document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
             document.querySelectorAll('.nav-links li').forEach(l => l.classList.remove('active'));
+            
+            // Adiciona a classe ativa na aba e link selecionados
             document.getElementById(tabId).classList.add('active');
             const link = document.getElementById('link-' + tabId);
             if(link) link.classList.add('active');
+            
+            // Scroll suave para o topo
             window.scrollTo({top: 0, behavior: 'smooth'});
-        }
-
-        // Função para o botão principal descer suavemente até o formulário
-        function scrollToForm(){
-            document.getElementById("form-section").scrollIntoView({behavior: "smooth"});
         }
     </script>
 </body>
