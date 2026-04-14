@@ -3,283 +3,221 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GreenMind - Horta Inteligente</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <title>GreenMind | Tecnologia que Cultiva o Futuro</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --dark-bg: #050a06;
-            --card-bg: rgba(20, 40, 25, 0.7);
-            --accent-gold: #d4af37;
-            --accent-green: #2e7d32;
-            --text-white: #e0e0e0;
-            --glass-border: rgba(255, 255, 255, 0.1);
+            --primary-green: #2e7d32;
+            --dark-forest: #050a06;
+            --gold: #d4af37;
+            --glass: rgba(20, 40, 25, 0.75);
+            --border: rgba(255, 255, 255, 0.1);
+            --text-gray: #b0b0b0;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Inter', sans-serif;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
 
         body {
-            background-color: var(--dark-bg);
-            background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?auto=format&fit=crop&q=80&w=1920');
-            background-size: cover;
+            background-color: var(--dark-forest);
+            color: white;
+            background-image: radial-gradient(circle at 50% -20%, #1a3a20 0%, var(--dark-forest) 70%);
             background-attachment: fixed;
-            color: var(--text-white);
-            line-height: 1.6;
+            overflow-x: hidden;
         }
 
-        /* --- NAVEGAÇÃO --- */
+        /* NAVEGAÇÃO PREMIUM */
         nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 5%;
-            background: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(10px);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 20px 8%; background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(15px); position: fixed; width: 100%; top: 0; z-index: 2000;
+            border-bottom: 1px solid var(--border);
         }
 
-        .logo {
-            font-weight: 700;
-            color: var(--accent-gold);
-            font-size: 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
+        .logo { font-weight: 800; font-size: 1.6rem; color: var(--gold); display: flex; align-items: center; gap: 12px; }
+        .nav-links { display: flex; list-style: none; gap: 30px; }
+        .nav-links li { cursor: pointer; font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; transition: 0.3s; color: var(--text-gray); }
+        .nav-links li:hover, .nav-links li.active { color: var(--gold); }
 
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 25px;
-        }
+        .container { max-width: 1200px; margin: 120px auto 60px; padding: 0 20px; }
 
-        .nav-links li {
-            cursor: pointer;
-            font-size: 0.9rem;
-            transition: 0.3s;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
+        .tab-content { display: none; animation: slideUp 0.6s cubic-bezier(0.23, 1, 0.32, 1); }
+        .tab-content.active { display: block; }
 
-        .nav-links li:hover, .nav-links li.active {
-            color: var(--accent-gold);
-        }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* --- CONTAINER PRINCIPAL --- */
-        .container {
-            max-width: 1200px;
-            margin: 40px auto;
-            padding: 0 20px;
+        /* SEÇÃO INÍCIO (A IDEIA) */
+        .hero { text-align: center; padding: 60px 0; }
+        .hero h1 { font-size: 3.5rem; margin-bottom: 20px; background: linear-gradient(to right, #fff, var(--gold)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .tagline { color: var(--gold); text-transform: uppercase; font-weight: 600; letter-spacing: 4px; margin-bottom: 10px; display: block; }
+        
+        .history-box { 
+            background: var(--glass); border: 1px solid var(--border); border-radius: 24px;
+            padding: 40px; margin-top: 40px; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center;
         }
+        .history-box h2 { color: var(--gold); margin-bottom: 20px; }
+        .badge { background: var(--primary-green); padding: 5px 15px; border-radius: 50px; font-size: 0.7rem; vertical-align: middle; margin-left: 10px; }
 
-        .tab-content {
-            display: none;
-            animation: fadeIn 0.5s ease;
+        /* SEÇÃO MODELOS */
+        .grid-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; margin-top: 40px; }
+        .card { 
+            background: var(--glass); border: 1px solid var(--border); border-radius: 24px; padding: 35px;
+            backdrop-filter: blur(10px); transition: 0.4s ease; position: relative; overflow: hidden;
         }
+        .card:hover { transform: translateY(-12px); border-color: var(--gold); box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
+        .card h3 { color: var(--gold); font-size: 1.5rem; margin: 20px 0 10px; }
+        .price { display: block; font-size: 1.8rem; font-weight: 800; margin: 15px 0; color: white; }
+        .card ul { list-style: none; color: var(--text-gray); font-size: 0.9rem; margin-bottom: 25px; }
+        .card ul li { margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+        .card ul li::before { content: "✓"; color: var(--primary-green); font-weight: bold; }
 
-        .tab-content.active {
-            display: block;
+        /* SEÇÃO PROTÓTIPO (MONITORAMENTO) */
+        .monitor-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 30px; }
+        .ai-status { background: rgba(212, 175, 55, 0.1); border: 1px solid var(--gold); padding: 10px 20px; border-radius: 12px; color: var(--gold); font-size: 0.8rem; }
+        
+        .plant-monitor { 
+            background: var(--glass); border-radius: 24px; padding: 30px; margin-bottom: 25px;
+            display: grid; grid-template-columns: 120px 1fr 1fr; gap: 30px; align-items: center;
         }
+        .plant-img { width: 100px; height: 100px; border-radius: 18px; background: #111; display: flex; align-items: center; justify-content: center; font-size: 2rem; }
+        .progress-container { width: 100%; }
+        .progress-label { display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 8px; color: var(--text-gray); }
+        .progress-bar { height: 8px; background: rgba(255,255,255,0.05); border-radius: 10px; overflow: hidden; }
+        .progress-fill { height: 100%; background: linear-gradient(90deg, var(--primary-green), #4caf50); transition: 1s ease; }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+        .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
+        .stat-item { background: rgba(0,0,0,0.2); padding: 15px; border-radius: 15px; text-align: center; border: 1px solid var(--border); }
+        .stat-val { display: block; font-size: 1.1rem; font-weight: 700; color: white; }
+        .stat-label { font-size: 0.7rem; color: var(--text-gray); text-transform: uppercase; }
+
+        .btn-action { 
+            background: var(--primary-green); color: white; padding: 12px 30px; border: none; 
+            border-radius: 50px; font-weight: 600; cursor: pointer; transition: 0.3s; width: 100%;
         }
+        .btn-action:hover { background: #3e8e41; transform: scale(1.02); }
 
-        h1 {
-            text-align: center;
-            margin-bottom: 40px;
-            font-size: 2.5rem;
-            color: white;
-        }
+        footer { text-align: center; padding: 80px 0; border-top: 1px solid var(--border); margin-top: 100px; }
+        .footer-info { color: var(--text-gray); font-size: 0.8rem; margin-top: 20px; line-height: 2; }
 
-        /* --- GRID DE MODELOS --- */
-        .grid-modelos {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .card {
-            background: var(--card-bg);
-            border: 1px solid var(--glass-border);
-            border-radius: 20px;
-            padding: 30px;
-            text-align: center;
-            backdrop-filter: blur(5px);
-            transition: 0.3s;
-        }
-
-        .card:hover {
-            transform: translateY(-10px);
-            border-color: var(--accent-gold);
-        }
-
-        .card img {
-            width: 100%;
-            border-radius: 15px;
-            margin-bottom: 20px;
-        }
-
-        .card h3 {
-            color: var(--accent-gold);
-            margin-bottom: 15px;
-        }
-
-        .btn {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 10px 25px;
-            background: var(--accent-green);
-            color: white;
-            text-decoration: none;
-            border-radius: 30px;
-            font-size: 0.9rem;
-            transition: 0.3s;
-        }
-
-        .btn:hover {
-            background: #3e8e41;
-            box-shadow: 0 0 15px rgba(46, 125, 50, 0.5);
-        }
-
-        /* --- TELA PROTÓTIPO (MONITORAMENTO) --- */
-        .monitor-grid {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .monitor-card {
-            background: var(--card-bg);
-            border-radius: 20px;
-            padding: 25px;
-            border-left: 5px solid var(--accent-green);
-        }
-
-        .status-bar {
-            height: 10px;
-            background: #1a1a1a;
-            border-radius: 5px;
-            margin: 15px 0;
-            overflow: hidden;
-        }
-
-        .status-fill {
-            height: 100%;
-            background: var(--accent-green);
-        }
-
-        .metrics {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
-            margin-top: 20px;
-        }
-
-        .metric-box {
-            background: rgba(0,0,0,0.3);
-            padding: 15px;
-            border-radius: 10px;
-            text-align: center;
-            font-size: 0.8rem;
-        }
-
-        /* --- FOOTER --- */
-        footer {
-            text-align: center;
-            padding: 60px 20px;
-            margin-top: 50px;
-        }
-
-        .footer-logo {
-            width: 60px;
-            margin-bottom: 10px;
-        }
-
-        /* RESPONSIVIDADE */
         @media (max-width: 768px) {
-            .nav-links { display: none; } /* Em um site real, aqui entraria um menu hambúrguer */
-            h1 { font-size: 1.8rem; }
+            .nav-links { display: none; }
+            .history-box { grid-template-columns: 1fr; }
+            .plant-monitor { grid-template-columns: 1fr; text-align: center; }
+            .plant-img { margin: 0 auto; }
+            .hero h1 { font-size: 2.2rem; }
         }
     </style>
 </head>
 <body>
 
     <nav>
-        <div class="logo">
-            <span>🌿</span> GreenMind
-        </div>
+        <div class="logo">🌿 GreenMind</div>
         <ul class="nav-links">
-            <li onclick="showTab('inicio')" id="link-inicio">Início</li>
-            <li onclick="showTab('ideia')" id="link-ideia">A Ideia</li>
+            <li onclick="showTab('inicio')" id="link-inicio">A Ideia</li>
             <li onclick="showTab('modelos')" id="link-modelos" class="active">Modelos</li>
-            <li onclick="showTab('prototipo')" id="link-prototipo">Protótipo</li>
+            <li onclick="showTab('prototipo')" id="link-prototipo">Monitoramento</li>
         </ul>
     </nav>
 
     <div class="container">
         
         <section id="inicio" class="tab-content">
-            <h1>Cultive o Futuro em Casa</h1>
-            <div class="card" style="max-width: 800px; margin: 0 auto;">
-                <p>A GreenMind une tecnologia e natureza para transformar sua experiência de cultivo urbano.</p>
-                <a href="#" class="btn" onclick="showTab('modelos')">Conheça nossos modelos</a>
+            <div class="hero">
+                <span class="tagline">Tecnologia que cultiva o futuro</span>
+                <h1>Transformando o Cuidado Digital</h1>
+            </div>
+            <div class="history-box">
+                <div>
+                    <h2>Nossa Missão <span class="badge">Sustentabilidade</span></h2>
+                    <p>Nascida no ambiente acadêmico do Senac Blumenau, a GreenMind resolve a falta de tempo e o manejo inadequado da irrigação.</p>
+                    <br>
+                    <p>Utilizamos <strong>Inteligência Artificial</strong> e sensores de precisão para garantir que cada planta receba exatamente o que precisa, evitando o desperdício de água.</p>
+                </div>
+                <div style="background: rgba(0,0,0,0.3); padding: 30px; border-radius: 20px; border: 1px dashed var(--gold);">
+                    <h3 style="color: var(--gold); margin-bottom: 10px;">Conquistas Recentes</h3>
+                    <ul style="list-style: none; font-size: 0.9rem;">
+                        <li style="margin-bottom: 10px;">🏆 3º Lugar na Jornada inicIA (WK Sistemas)</li>
+                        <li style="margin-bottom: 10px;">🌱 Selecionados para o Conexão WK 2025</li>
+                        <li style="margin-bottom: 10px;">🔬 Evolução do Protótipo Horta Inteligente (2024)</li>
+                    </ul>
+                </div>
             </div>
         </section>
 
         <section id="modelos" class="tab-content active">
-            <h1>Nossos Modelos</h1>
-            <div class="grid-modelos">
+            <div class="hero">
+                <h1>Escolha seu Kit de Automação</h1>
+                <p style="color: var(--text-gray)">Sistemas modulares com margem de lucro otimizada e foco em escalabilidade.</p>
+            </div>
+            <div class="grid-cards">
                 <div class="card">
-                    <img src="https://via.placeholder.com/300x250/142819/FFFFFF?text=Modelo+Individual" alt="1 Planta">
-                    <h3>Modelo Individual</h3>
-                    <p>Foco total em uma espécie. Ideal para quem está começando ou tem pouco espaço.</p>
-                    <a href="#" class="btn">Ver Detalhes</a>
+                    <span class="badge" style="position: absolute; top: 20px; right: 20px;">Popular</span>
+                    <h3>Kit Individual</h3>
+                    <span class="price">R$ 390,00</span>
+                    <ul>
+                        <li>Sensor de umidade capacitivo</li>
+                        <li>Microcontrolador ESP32/8266</li>
+                        <li>Válvula Solenoide 12V</li>
+                        <li>Acesso ao App GreenMind</li>
+                    </ul>
+                    <button class="btn-action">Adquirir Kit</button>
+                </div>
+                <div class="card" style="border-color: var(--gold);">
+                    <h3>Kit Modular</h3>
+                    <span class="price">Sob Consulta</span>
+                    <ul>
+                        <li>Projetado sob demanda</li>
+                        <li>Escolas e Condomínios</li>
+                        <li>Integração com IA avançada</li>
+                        <li>Consultoria e Instalação</li>
+                    </ul>
+                    <button class="btn-action" style="background: var(--gold);">Solicitar Projeto</button>
                 </div>
                 <div class="card">
-                    <img src="https://via.placeholder.com/300x250/142819/FFFFFF?text=Modelo+Duplo" alt="2 Plantas">
-                    <h3>Modelo Duplo</h3>
-                    <p>Cultive duas espécies diferentes com sensores de umidade independentes.</p>
-                    <a href="#" class="btn">Ver Detalhes</a>
-                </div>
-                <div class="card">
-                    <img src="https://via.placeholder.com/300x250/142819/FFFFFF?text=Modelo+Familia" alt="4 Plantas">
-                    <h3>Modelo Família</h3>
-                    <p>O topo da linha. Quatro compartimentos para uma horta completa e variada.</p>
-                    <a href="#" class="btn">Ver Detalhes</a>
+                    <h3>Plataforma Digital</h3>
+                    <span class="price">SaaS Freemium</span>
+                    <ul>
+                        <li>Monitoramento Real-time</li>
+                        <li>Diagnóstico por Imagem</li>
+                        <li>Alertas e Recomendações</li>
+                        <li>Banco de Dados de Espécies</li>
+                    </ul>
+                    <button class="btn-action">Testar App</button>
                 </div>
             </div>
         </section>
 
         <section id="prototipo" class="tab-content">
-            <h1>Monitoramento em Tempo Real</h1>
-            <div class="monitor-grid">
-                <div class="monitor-card">
-                    <h3>Lado Esquerdo - Salsinha</h3>
-                    <p>Status: <span style="color: #4CAF50;">Ideal</span></p>
-                    <div class="status-bar"><div class="status-fill" style="width: 80%;"></div></div>
-                    <div class="metrics">
-                        <div class="metric-box">Temp: 24°C</div>
-                        <div class="metric-box">Luz: 85%</div>
-                        <div class="metric-box">Rega: Hoje</div>
-                    </div>
+            <div class="monitor-header">
+                <div>
+                    <h1>Painel de Controle</h1>
+                    <p style="color: var(--text-gray)">Dados coletados via sensores embarcados e processados por IA.</p>
                 </div>
-                <div class="monitor-card" style="border-left-color: #ffa000;">
-                    <h3>Lado Direito - Alecrim</h3>
-                    <p>Status: <span style="color: #ffa000;">Atenção</span></p>
-                    <div class="status-bar"><div class="status-fill" style="width: 40%; background: #ffa000;"></div></div>
-                    <div class="metrics">
-                        <div class="metric-box">Temp: 26°C</div>
-                        <div class="metric-box">Luz: 90%</div>
-                        <div class="metric-box">Rega: 2 dias atrás</div>
-                    </div>
+                <div class="ai-status">🤖 IA Analisando: Condições Ideais</div>
+            </div>
+
+            <div class="plant-monitor">
+                <div class="plant-img">🌿</div>
+                <div class="progress-container">
+                    <div class="progress-label"><span>Umidade do Solo (Salsinha)</span><span>80%</span></div>
+                    <div class="progress-bar"><div class="progress-fill" style="width: 80%;"></div></div>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-item"><span class="stat-val">24°C</span><span class="stat-label">Temperatura</span></div>
+                    <div class="stat-item"><span class="stat-val">85%</span><span class="stat-label">Luz Solar</span></div>
+                    <div class="stat-item"><span class="stat-val">Hoje</span><span class="stat-label">Última Rega</span></div>
+                </div>
+            </div>
+
+            <div class="plant-monitor">
+                <div class="plant-img">🌱</div>
+                <div class="progress-container">
+                    <div class="progress-label"><span>Umidade do Solo (Alecrim)</span><span>40%</span></div>
+                    <div class="progress-bar"><div class="progress-fill" style="width: 40%; background: #ffa000;"></div></div>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-item"><span class="stat-val">26°C</span><span class="stat-label">Temperatura</span></div>
+                    <div class="stat-item"><span class="stat-val">92%</span><span class="stat-label">Luz Solar</span></div>
+                    <div class="stat-item" style="color: #ffa000;"><span class="stat-val" style="color: #ffa000;">2 Dias</span><span class="stat-label">Última Rega</span></div>
                 </div>
             </div>
         </section>
@@ -287,25 +225,20 @@
     </div>
 
     <footer>
-        <div class="logo" style="justify-content: center; margin-bottom: 20px;">🌿 GreenMind</div>
-        <p>© 2026 GreenMind - Tecnologia Sustentável</p>
+        <div class="logo" style="justify-content: center;">🌿 GreenMind</div>
+        <div class="footer-info">
+            Equipe: Isabelle Duarte Belo, Richard Wagenknecht, Sarah Julia Antunes Velho <br>
+            Desenvolvido originalmente no Senac Blumenau (2024-2025) [cite: 12, 83, 88]<br>
+            © 2026 GreenMind - Tecnologia que cultiva o futuro [cite: 82]
+        </div>
     </footer>
 
     <script>
         function showTab(tabId) {
-            // Esconde todas as abas
-            const contents = document.querySelectorAll('.tab-content');
-            contents.forEach(content => content.classList.remove('active'));
-
-            // Remove classe active dos links
-            const links = document.querySelectorAll('.nav-links li');
-            links.forEach(link => link.classList.remove('active'));
-
-            // Mostra a aba clicada
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+            document.querySelectorAll('.nav-links li').forEach(l => l.classList.remove('active'));
             document.getElementById(tabId).classList.add('active');
             document.getElementById('link-' + tabId).classList.add('active');
-            
-            // Rola para o topo suavemente
             window.scrollTo({top: 0, behavior: 'smooth'});
         }
     </script>
