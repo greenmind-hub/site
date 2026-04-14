@@ -5,164 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GreenMind | Tecnologia que cultiva o futuro</title>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --primary-green: #142819; 
-            --accent-green: #22c55e;
-            --gold: #d4af37;
-            --dark-bg: #050a06;
-            --text-light: #e0e0e0;
-            --glass: rgba(20, 40, 25, 0.85);
-            --border: rgba(212, 175, 55, 0.2);
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
-
-        body {
-            background-color: var(--dark-bg);
-            color: var(--text-light);
-            background-image: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.9)), url('SUA_IMAGEM_DE_FUNDO_AQUI.jpg');
-            background-size: cover;
-            background-attachment: fixed;
-            line-height: 1.6;
-        }
-
-        nav {
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 20px 8%; background: rgba(5, 10, 6, 0.95);
-            backdrop-filter: blur(10px); position: fixed; width: 100%; top: 0; z-index: 1000;
-            border-bottom: 1px solid var(--border);
-        }
-        .logo { font-weight: 800; font-size: 1.5rem; color: var(--gold); cursor: pointer; }
-        .nav-links { display: flex; list-style: none; gap: 30px; }
-        .nav-links li { cursor: pointer; font-size: 0.85rem; font-weight: 600; text-transform: uppercase; color: #888; transition: 0.3s; }
-        .nav-links li:hover, .nav-links li.active { color: var(--gold); }
-
-        .container { max-width: 1200px; margin: 120px auto 60px; padding: 0 20px; }
-
-        .tab-content { display: none; animation: fadeIn 0.6s ease; }
-        .tab-content.active { display: block; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-
-        /* BENTO GRID (HOME) */
-        .bento-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            grid-template-rows: auto auto auto;
-            gap: 25px;
-            margin-bottom: 60px;
-        }
-
-        .bento-item {
-            background: var(--glass);
-            border: 1px solid var(--border);
-            border-radius: 30px;
-            padding: 40px;
-            position: relative;
-            overflow: hidden;
-            transition: 0.4s ease;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            cursor: pointer;
-        }
-
-        .bento-item:hover { border-color: var(--gold); transform: translateY(-5px); }
-        .bento-item img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: -1; opacity: 0.3; transition: 0.5s; }
-        .bento-item:hover img { opacity: 0.5; transform: scale(1.05); }
-
-        .hero-card { grid-column: 1 / 2; background: transparent; border: none; padding-left: 0; cursor: default; }
-        .hero-card:hover { transform: none; }
-        
-        .featured-card { grid-column: 2 / 3; grid-row: 1 / 3; }
-        .featured-card img { opacity: 0.4; } 
-
-        .bottom-row {
-            grid-column: 1 / 3;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-        }
-
-        .small-card { text-align: center; padding: 30px 20px; min-height: 200px; }
-
-        /* PESQUISA E PROBLEMA */
-        .market-section { margin-top: 80px; padding-top: 60px; border-top: 1px solid var(--border); }
-        .problem-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 30px; margin-top: 40px; }
-        .problem-box { background: rgba(255,255,255,0.02); padding: 40px; border-radius: 24px; border-left: 4px solid var(--gold); }
-        .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-        .stat-card { background: var(--glass); padding: 30px; border-radius: 20px; border: 1px solid var(--border); text-align: center; }
-        .stat-number { display: block; font-size: 2.5rem; font-weight: 800; color: var(--gold); }
-
-        /* FORMULÁRIO DE PESQUISA */
-        .research-form {
-            max-width: 800px; margin: 80px auto; background: var(--glass);
-            border: 1px solid var(--border); border-radius: 30px; padding: 50px;
-        }
-        .form-group { margin-bottom: 25px; }
-        .form-group label { display: block; margin-bottom: 10px; font-weight: 600; color: #fff; }
-        .options { display: flex; gap: 10px; }
-        .options button {
-            flex: 1; padding: 12px; border-radius: 10px; border: 1px solid var(--border);
-            background: transparent; color: white; cursor: pointer; transition: 0.3s;
-        }
-        .options button.active { background: var(--gold); color: black; font-weight: 700; }
-        input {
-            width: 100%; padding: 15px; border-radius: 10px; border: 1px solid var(--border);
-            background: rgba(255,255,255,0.05); color: white;
-        }
-        .btn-send {
-            width: 100%; padding: 18px; border-radius: 12px; border: none;
-            background: linear-gradient(90deg, var(--gold), #b38f2d);
-            color: black; font-weight: 800; cursor: pointer; text-transform: uppercase; margin-top: 20px;
-            transition: 0.3s;
-        }
-        .btn-send:hover { transform: scale(1.02); box-shadow: 0 10px 20px rgba(212, 175, 55, 0.2); }
-
-        /* SEÇÃO TRAJETÓRIA */
-        .story-container { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 40px; }
-        .img-placeholder { border-radius: 24px; border: 1px solid var(--gold); overflow: hidden; height: 400px; }
-        .img-placeholder img { width: 100%; height: 100%; object-fit: cover; }
-
-        footer { text-align: center; padding: 80px 0; border-top: 1px solid var(--border); color: #666; font-size: 0.8rem; }
-
-        @media (max-width: 850px) {
-            .bento-container, .bottom-row, .problem-grid, .story-container { grid-template-columns: 1fr; }
-
-            .monitor-card {
-            background: var(--card-bg);
-            border-radius: var(--border-radius);
-            padding: 35px; margin-bottom: 25px;
-            border: 1px solid rgba(255,255,255,0.02);
-            position: relative;
-        }
-        
-        .monitor-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px; }
-        .monitor-header div h3 { font-size: 1.8rem; margin-bottom: 2px; }
-        .monitor-header div span { color: var(--text-muted); font-size: 0.9rem; font-weight: 500; }
-        .status-dot { width: 12px; height: 12px; border-radius: 50%; }
-        .status-dot.green { background-color: var(--accent-green); box-shadow: 0 0 10px var(--accent-green); }
-        .status-dot.orange { background-color: var(--accent-orange); box-shadow: 0 0 10px var(--accent-orange); }
-
-        .progress-container { margin-bottom: 25px; }
-        .progress-info { display: flex; align-items: baseline; gap: 10px; margin-bottom: 8px; }
-        .progress-info .percent { font-size: 2rem; font-weight: 700; }
-        .progress-info .percent.green { color: var(--accent-green); }
-        .progress-info .percent.orange { color: var(--accent-orange); }
-        .progress-info .label { color: #fff; font-size: 0.9rem; font-weight: 600; }
-        
-        .progress-bar-bg { width: 100%; height: 6px; background: #fff; border-radius: 10px; overflow: hidden; }
-        .progress-bar-fill { height: 100%; border-radius: 10px; }
-        .progress-bar-fill.green { background: var(--accent-green); width: 80%; }
-        .progress-bar-fill.orange { background: var(--accent-orange); width: 67%; }
-
-        .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
-        .stat-box {
-            background: var(--card-bg-light); border-radius: 12px; padding: 20px 15px;
-            text-align: center; font-size: 0.85rem; font-weight: 600; color: var(--text-main);
-        }
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -181,64 +24,21 @@
         <section id="inicio" class="tab-content active">
             <div class="bento-container">
                 <div class="bento-item hero-card">
-                    <h1 style="font-size: 3.5rem; line-height: 1.1;">O Futuro é <span style="color: var(--gold);">Verde</span></h1>
-                    <p style="margin-top: 20px; font-size: 1.1rem; color: #aaa;">Tecnologia, Sustentabilidade e Automação em um só lugar.</p>
-                    <button class="btn-send" style="width: auto; padding: 15px 30px;" onclick="scrollToForm()">Responder Pesquisa</button>
+                    <h1>O Futuro é <span class="gold-text">Verde</span></h1>
+                    <p>Tecnologia, Sustentabilidade e Automação em um só lugar.</p>
+                    <button class="btn-send" onclick="scrollToForm()">Responder Pesquisa</button>
                 </div>
 
                 <div class="bento-item featured-card" onclick="showTab('modelos')">
                     <img src="horta.jpg" alt="Horta">
-                    <h3 style="color: var(--gold); position: relative; z-index: 2;">Hortas Inteligentes</h3>
-                    <p style="position: relative; z-index: 2;">Sistemas modulares para o seu lar.</p>
-                </div>
-
-                <div class="bento-item" onclick="showTab('ideia')">
-                    <img src="historia.jpg" alt="História">
-                    <h3 style="color: var(--gold); position: relative; z-index: 2;">Nossa História</h3>
-                    <p style="position: relative; z-index: 2;">Do Senac para o mercado.</p>
-                </div>
-
-                <div class="bottom-row">
-                    <div class="bento-item small-card" onclick="showTab('prototipo')">
-                        <img src="peca.jpg" alt="Peça">
-                        <h4 style="position: relative; z-index: 2;">Sensores</h4>
-                        <p style="font-size: 0.8rem; position: relative; z-index: 2;">Umidade e Luz</p>
-                    </div>
-                    <div class="bento-item small-card" onclick="showTab('prototipo')">
-                        <img src="int.jpg" alt="Inteligência">
-                        <h4 style="position: relative; z-index: 2;">Inteligência</h4>
-                        <p style="font-size: 0.8rem; position: relative; z-index: 2;">Análise Preditiva</p>
-                    </div>
-                    <div class="bento-item small-card" onclick="showTab('modelos')">
-                        <h4 style="color: var(--gold); position: relative; z-index: 2;">Sustentabilidade</h4>
-                        <p style="font-size: 0.8rem; position: relative; z-index: 2;">Uso racional de água</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="market-section">
-                <div class="problem-grid">
-                    <div class="problem-box">
-                        <h2 style="color: var(--gold); margin-bottom: 20px;">O Problema</h2>
-                        <p>Identificamos que <strong>51% das pessoas</strong> desejam ter uma horta, mas a falta de tempo e manejo inadequado levam à perda das plantas.</p>
-                        <p style="margin-top: 15px; color: #aaa; font-size: 0.9rem;">Cuidar de plantas não deveria ser um trabalho em tempo integral. A GreenMind resolve o desperdício de água e a falta de monitoramento técnico.</p>
-                    </div>
-                    <div class="stats-grid">
-                        <div class="stat-card">
-                            <span class="stat-number">400k</span>
-                            <small>Novos aptos/ano no BR</small>
-                        </div>
-                        <div class="stat-card">
-                            <span class="stat-number">3º</span>
-                            <small>Lugar Jornada inicIA</small>
-                        </div>
-                    </div>
+                    <h3>Hortas Inteligentes</h3>
+                    <p>Sistemas modulares para o seu lar.</p>
                 </div>
             </div>
 
             <div id="form-section" class="research-form">
-                <h2 style="text-align: center; color: var(--gold); margin-bottom: 10px;">Precisamos da sua opinião</h2>
-                <p style="text-align: center; color: #888; margin-bottom: 30px;">Suas respostas serão enviadas de forma segura para nossa equipe.</p>
+                <h2>Precisamos da sua opinião</h2>
+                <p>Suas respostas serão enviadas para contato.greenmind@gmail.com</p>
                 
                 <form action="https://formsubmit.co/contato.greenmind@gmail.com" method="POST">
                     <input type="hidden" name="_subject" value="Nova resposta de Pesquisa - GreenMind">
@@ -247,9 +47,9 @@
                     <div class="form-group">
                         <label>Dificuldade com plantas?</label>
                         <div class="options">
-                            <button type="button" onclick="select(this,'dificuldade','Sim')">Sim</button>
-                            <button type="button" onclick="select(this,'dificuldade','Às vezes')">Às vezes</button>
-                            <button type="button" onclick="select(this,'dificuldade','Não')">Não</button>
+                            <button type="button" onclick="selectOption(this,'dificuldade','Sim')">Sim</button>
+                            <button type="button" onclick="selectOption(this,'dificuldade','Às vezes')">Às vezes</button>
+                            <button type="button" onclick="selectOption(this,'dificuldade','Não')">Não</button>
                         </div>
                         <input type="hidden" name="dificuldade" required>
                     </div>
@@ -257,16 +57,16 @@
                     <div class="form-group">
                         <label>Usaria automação?</label>
                         <div class="options">
-                            <button type="button" onclick="select(this,'interesse','Sim')">Sim</button>
-                            <button type="button" onclick="select(this,'interesse','Talvez')">Talvez</button>
-                            <button type="button" onclick="select(this,'interesse','Não')">Não</button>
+                            <button type="button" onclick="selectOption(this,'interesse','Sim')">Sim</button>
+                            <button type="button" onclick="selectOption(this,'interesse','Talvez')">Talvez</button>
+                            <button type="button" onclick="selectOption(this,'interesse','Não')">Não</button>
                         </div>
                         <input type="hidden" name="interesse" required>
                     </div>
 
                     <div class="form-group">
                         <label>Quanto pagaria?</label>
-                        <input type="text" name="preco" placeholder="Ex: R$15" required>
+                        <input type="text" name="preco" placeholder="Ex: R$150" required>
                     </div>
 
                     <div class="form-group">
@@ -274,129 +74,32 @@
                         <input type="email" name="email" required>
                     </div>
 
-                    <button class="btn-send">Enviar Respostas</button>
+                    <button type="submit" class="btn-send">Enviar Respostas</button>
                 </form>
             </div>
         </section>
 
         <section id="ideia" class="tab-content">
-            <div class="story-container">
-                <div>
-                    <h2 style="color: var(--gold); font-size: 2.2rem;">Inovação na sala de aula.</h2>
-                    <p style="margin-top: 20px;">A GreenMind surgiu no curso de <strong>Programação de Jogos Digitais do SENAC Blumenau</strong>.</p>
-                    <p style="margin-top: 15px;">Ao participarmos da <strong>Feira de Jovens Cientistas 2024</strong> e da <strong>Jornada inicIA</strong>, conquistamos o 3º lugar e refinamos nossa IA.</p>
-                    
-                    <div style="margin-top: 30px; border-left: 2px solid var(--gold); padding-left: 20px;">
-                        <h4 style="color: var(--gold);">Nosso Diferencial</h4>
-                        <p style="font-size: 0.9rem;">Economia de até 40% mais água que irrigações comuns através de análise de dados hídricos.</p>
-                    </div>
-                </div>
-                <div class="img-placeholder">
-                    <img src="prep.jpg" alt="Protótipo Original">
-                </div>
-            </div>
+            <h2>Nossa Trajetória</h2>
+            <p>Projeto nascido no Senac Blumenau.</p>
         </section>
 
         <section id="modelos" class="tab-content">
-            <h2 style="text-align: center; margin-bottom: 40px; color: var(--gold);">Escolha o seu Kit</h2>
-            <div class="bottom-row">
-                <div class="bento-item small-card">
-                    <h3>Solo (1)</h3>
-                    <p>Ideal para iniciantes.</p>
-                </div>
-                <div class="bento-item small-card" style="border-color: var(--gold);">
-                    <h3>Duo (2)</h3>
-                    <p>Praticidade em dobro.</p>
-                </div>
-                <div class="bento-item small-card">
-                    <h3>Family (4)</h3>
-                    <p>Horta completa.</p>
-                </div>
-            </div>
+            <h2>Modelos</h2>
+            <p>Solo, Duo e Family.</p>
         </section>
 
-      <section id="prototipo" class="tab-content">
-            <div class="section-header">
-                <h2>Monitoramento da Horta</h2>
-                <p>Acompanhe crescimento, status, economia hídrica e muito mais em tempo real.</p>
-            </div>
-
-            <div class="monitor-card">
-                <div class="monitor-header">
-                    <div>
-                        <h3>Lado Esquerdo</h3>
-                        <span>Salsinha</span>
-                    </div>
-                    <div class="status-dot green"></div>
-                </div>
-                
-                <div class="progress-container">
-                    <div class="progress-info">
-                        <span class="percent green">80%</span>
-                        <span class="label">Ideal</span>
-                    </div>
-                    <div class="progress-bar-bg">
-                        <div class="progress-bar-fill green"></div>
-                    </div>
-                </div>
-
-                <div class="stats-grid">
-                    <div class="stat-box">Temperatura</div>
-                    <div class="stat-box">Luz</div>
-                    <div class="stat-box">Última Rega</div>
-                </div>
-            </div>
-
-            <div class="monitor-card">
-                <div class="monitor-header">
-                    <div>
-                        <h3>Lado Direito</h3>
-                        <span>Alecrim</span>
-                    </div>
-                    <div class="status-dot orange"></div>
-                </div>
-                
-                <div class="progress-container">
-                    <div class="progress-info">
-                        <span class="percent orange">67%</span>
-                        <span class="label">Média</span>
-                    </div>
-                    <div class="progress-bar-bg">
-                        <div class="progress-bar-fill orange"></div>
-                    </div>
-                </div>
-
-                <div class="stats-grid">
-                    <div class="stat-box">Temperatura</div>
-                    <div class="stat-box">Luz</div>
-                    <div class="stat-box">Última Rega</div>
-                </div>
-            </div>
-
+        <section id="prototipo" class="tab-content">
+            <h2>Monitoramento em Tempo Real</h2>
+            <p>Conectado via MQTT/ESP32.</p>
         </section>
 
     </div>
 
     <footer>
-        <div class="logo" style="justify-content: center; margin-bottom: 10px;">🌿 GreenMind</div>
-        <p>Isabelle Duarte Belo | Richard Wagenknecht | Sarah Julia Antunes Velho</p>
-        <p style="margin-top: 5px;">Projeto desenvolvido no Senac Blumenau © 2026</p>
+        <p>GreenMind © 2026 | Desenvolvido por Isabelle, Richard e Sarah</p>
     </footer>
 
-    <script>
-        function showTab(tabId) {
-            // Remove a classe ativa de todos os conteúdos e links
-            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-            document.querySelectorAll('.nav-links li').forEach(l => l.classList.remove('active'));
-            
-            // Adiciona a classe ativa na aba e link selecionados
-            document.getElementById(tabId).classList.add('active');
-            const link = document.getElementById('link-' + tabId);
-            if(link) link.classList.add('active');
-            
-            // Scroll suave para o topo
-            window.scrollTo({top: 0, behavior: 'smooth'});
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
