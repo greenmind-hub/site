@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GreenMind - Horta Inteligente</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --dark-bg: #050a06;
+            --card-bg: rgba(20, 40, 25, 0.7);
+            --accent-gold: #d4af37;
+            --accent-green: #2e7d32;
+            --text-white: #e0e0e0;
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?auto=format&fit=crop&q=80&w=1920');
+            background-size: cover;
+            background-attachment: fixed;
+            color: var(--text-white);
+            line-height: 1.6;
+        }
+
+        /* --- NAVEGAÇÃO --- */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-weight: 700;
+            color: var(--accent-gold);
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        .nav-links li {
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .nav-links li:hover, .nav-links li.active {
+            color: var(--accent-gold);
+        }
+
+        /* --- CONTAINER PRINCIPAL --- */
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 2.5rem;
+            color: white;
+        }
+
+        /* --- GRID DE MODELOS --- */
+        .grid-modelos {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            backdrop-filter: blur(5px);
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent-gold);
+        }
+
+        .card img {
+            width: 100%;
+            border-radius: 15px;
+            margin-bottom: 20px;
+        }
+
+        .card h3 {
+            color: var(--accent-gold);
+            margin-bottom: 15px;
+        }
+
+        .btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 25px;
+            background: var(--accent-green);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background: #3e8e41;
+            box-shadow: 0 0 15px rgba(46, 125, 50, 0.5);
+        }
+
+        /* --- TELA PROTÓTIPO (MONITORAMENTO) --- */
+        .monitor-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .monitor-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 25px;
+            border-left: 5px solid var(--accent-green);
+        }
+
+        .status-bar {
+            height: 10px;
+            background: #1a1a1a;
+            border-radius: 5px;
+            margin: 15px 0;
+            overflow: hidden;
+        }
+
+        .status-fill {
+            height: 100%;
+            background: var(--accent-green);
+        }
+
+        .metrics {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .metric-box {
+            background: rgba(0,0,0,0.3);
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            font-size: 0.8rem;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            text-align: center;
+            padding: 60px 20px;
+            margin-top: 50px;
+        }
+
+        .footer-logo {
+            width: 60px;
+            margin-bottom: 10px;
+        }
+
+        /* RESPONSIVIDADE */
+        @media (max-width: 768px) {
+            .nav-links { display: none; } /* Em um site real, aqui entraria um menu hambúrguer */
+            h1 { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">
+            <span>🌿</span> GreenMind
+        </div>
+        <ul class="nav-links">
+            <li onclick="showTab('inicio')" id="link-inicio">Início</li>
+            <li onclick="showTab('ideia')" id="link-ideia">A Ideia</li>
+            <li onclick="showTab('modelos')" id="link-modelos" class="active">Modelos</li>
+            <li onclick="showTab('prototipo')" id="link-prototipo">Protótipo</li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        
+        <section id="inicio" class="tab-content">
+            <h1>Cultive o Futuro em Casa</h1>
+            <div class="card" style="max-width: 800px; margin: 0 auto;">
+                <p>A GreenMind une tecnologia e natureza para transformar sua experiência de cultivo urbano.</p>
+                <a href="#" class="btn" onclick="showTab('modelos')">Conheça nossos modelos</a>
+            </div>
+        </section>
+
+        <section id="modelos" class="tab-content active">
+            <h1>Nossos Modelos</h1>
+            <div class="grid-modelos">
+                <div class="card">
+                    <img src="https://via.placeholder.com/300x250/142819/FFFFFF?text=Modelo+Individual" alt="1 Planta">
+                    <h3>Modelo Individual</h3>
+                    <p>Foco total em uma espécie. Ideal para quem está começando ou tem pouco espaço.</p>
+                    <a href="#" class="btn">Ver Detalhes</a>
+                </div>
+                <div class="card">
+                    <img src="https://via.placeholder.com/300x250/142819/FFFFFF?text=Modelo+Duplo" alt="2 Plantas">
+                    <h3>Modelo Duplo</h3>
+                    <p>Cultive duas espécies diferentes com sensores de umidade independentes.</p>
+                    <a href="#" class="btn">Ver Detalhes</a>
+                </div>
+                <div class="card">
+                    <img src="https://via.placeholder.com/300x250/142819/FFFFFF?text=Modelo+Familia" alt="4 Plantas">
+                    <h3>Modelo Família</h3>
+                    <p>O topo da linha. Quatro compartimentos para uma horta completa e variada.</p>
+                    <a href="#" class="btn">Ver Detalhes</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="prototipo" class="tab-content">
+            <h1>Monitoramento em Tempo Real</h1>
+            <div class="monitor-grid">
+                <div class="monitor-card">
+                    <h3>Lado Esquerdo - Salsinha</h3>
+                    <p>Status: <span style="color: #4CAF50;">Ideal</span></p>
+                    <div class="status-bar"><div class="status-fill" style="width: 80%;"></div></div>
+                    <div class="metrics">
+                        <div class="metric-box">Temp: 24°C</div>
+                        <div class="metric-box">Luz: 85%</div>
+                        <div class="metric-box">Rega: Hoje</div>
+                    </div>
+                </div>
+                <div class="monitor-card" style="border-left-color: #ffa000;">
+                    <h3>Lado Direito - Alecrim</h3>
+                    <p>Status: <span style="color: #ffa000;">Atenção</span></p>
+                    <div class="status-bar"><div class="status-fill" style="width: 40%; background: #ffa000;"></div></div>
+                    <div class="metrics">
+                        <div class="metric-box">Temp: 26°C</div>
+                        <div class="metric-box">Luz: 90%</div>
+                        <div class="metric-box">Rega: 2 dias atrás</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <footer>
+        <div class="logo" style="justify-content: center; margin-bottom: 20px;">🌿 GreenMind</div>
+        <p>© 2026 GreenMind - Tecnologia Sustentável</p>
+    </footer>
+
+    <script>
+        function showTab(tabId) {
+            // Esconde todas as abas
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => content.classList.remove('active'));
+
+            // Remove classe active dos links
+            const links = document.querySelectorAll('.nav-links li');
+            links.forEach(link => link.classList.remove('active'));
+
+            // Mostra a aba clicada
+            document.getElementById(tabId).classList.add('active');
+            document.getElementById('link-' + tabId).classList.add('active');
+            
+            // Rola para o topo suavemente
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        }
+    </script>
+</body>
+</html>
