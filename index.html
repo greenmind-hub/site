@@ -4,13 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Greenmind | Tecnologia Verde</title>
-    
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
-
-
-    
     <style>
-        /* --- CSS (ESTILO) --- */
         :root {
             --gold: #d4af37;
             --green: #22c55e;
@@ -26,59 +21,74 @@
             color: #e0e0e0;
             background-image: radial-gradient(circle at 50% 0%, #142d19 0%, #050a06 100%);
             background-attachment: fixed;
-            overflow-x: hidden;
         }
 
+        /* Navegação */
         nav {
             display: flex; justify-content: space-between; align-items: center;
             padding: 20px 8%; background: rgba(5, 10, 6, 0.95);
             position: fixed; width: 100%; top: 0; z-index: 1000;
             border-bottom: 1px solid var(--border); backdrop-filter: blur(10px);
         }
-
         .logo { font-weight: 800; color: var(--gold); cursor: pointer; font-size: 1.5rem; }
         .nav-links { display: flex; list-style: none; gap: 25px; }
         .nav-links li { cursor: pointer; font-size: 0.8rem; color: #777; text-transform: uppercase; transition: 0.3s; }
         .nav-links li.active { color: var(--gold); font-weight: 800; }
 
         .container { max-width: 1100px; margin: 120px auto 50px; padding: 0 20px; }
-
         .tab-content { display: none; }
         .tab-content.active { display: block; animation: fadeIn 0.6s ease; }
-
         @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* Layout Ziguezague */
+        /* Estilo Ziguezague e Espaçamentos */
         .feature-row { display: flex; align-items: center; gap: 60px; margin-bottom: 100px; }
         .feature-row.reverse { flex-direction: row-reverse; }
         .feature-image { flex: 1.2; border-radius: 30px; overflow: hidden; border: 1px solid var(--border); height: 400px; background: #111; }
         .feature-image img { width: 100%; height: 100%; object-fit: cover; }
+        
         .feature-text { flex: 1; }
+        .feature-text p { margin-bottom: 40px; color: #aaa; line-height: 1.6; } /* Espaço maior antes do botão */
+        
         .tag { color: var(--gold); font-size: 0.7rem; font-weight: 800; letter-spacing: 2px; margin-bottom: 15px; display: block; }
         .feature-text h2 { font-size: 2.5rem; margin-bottom: 20px; color: white; line-height: 1.1; }
-        .btn-outline { background: transparent; border: 1px solid var(--gold); color: var(--gold); padding: 12px 30px; border-radius: 50px; cursor: pointer; transition: 0.3s; font-weight: 600; }
+        
+        .btn-outline { background: transparent; border: 1px solid var(--gold); color: var(--gold); padding: 12px 35px; border-radius: 50px; cursor: pointer; transition: 0.3s; font-weight: 600; }
         .btn-outline:hover { background: var(--gold); color: black; }
+
+        /* Aba Produtos - Cards Maiores */
+        .product-card { 
+            background: var(--glass); border: 1px solid var(--border); 
+            border-radius: 30px; overflow: hidden; margin-bottom: 40px;
+            display: flex; flex-direction: column;
+        }
+        .product-img-large { width: 100%; height: 450px; background: #111; border-bottom: 1px solid var(--border); }
+        .product-img-large img { width: 100%; height: 100%; object-fit: cover; }
+        .product-info { padding: 40px; }
+        .product-info h3 { font-size: 2rem; color: var(--gold); margin-bottom: 15px; }
+
+        /* Pesquisa Melhorada */
+        .research-form { background: var(--glass); border: 1px solid var(--border); padding: 50px; border-radius: 30px; max-width: 850px; margin: 80px auto; }
+        .form-group { margin-bottom: 35px; }
+        .form-group label { display: block; margin-bottom: 15px; font-weight: 600; font-size: 1.1rem; }
+        
+        .options-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 10px; }
+        .options-grid button { padding: 15px; background: transparent; border: 1px solid var(--border); color: white; border-radius: 12px; cursor: pointer; transition: 0.3s; }
+        .options-grid button.active { background: var(--gold); color: black; font-weight: 800; border-color: var(--gold); }
+        
+        input, textarea { width: 100%; padding: 15px; background: rgba(0,0,0,0.3); border: 1px solid var(--border); color: white; border-radius: 12px; margin-top: 10px; font-size: 1rem; }
+        textarea { height: 120px; resize: none; }
+        
+        .btn-send { width: 100%; padding: 20px; background: var(--gold); border: none; border-radius: 15px; margin-top: 20px; font-weight: 800; cursor: pointer; font-size: 1.1rem; }
 
         /* Monitoramento */
         .monitor-card { background: var(--glass); border: 1px solid var(--border); padding: 30px; border-radius: 25px; margin-top: 20px; }
         .progress-bar-bg { width: 100%; height: 10px; background: rgba(255,255,255,0.1); border-radius: 10px; overflow: hidden; margin-top: 10px; }
-        .progress-bar-fill.green { background: var(--green); height: 100%; }
-        .percent { font-size: 2.5rem; font-weight: 800; color: var(--green); }
-        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-top: 20px; }
-        .stat-box { background: rgba(255,255,255,0.05); padding: 15px; border-radius: 15px; text-align: center; }
-
-        /* Formulário */
-        .research-form { background: var(--glass); border: 1px solid var(--border); padding: 50px; border-radius: 30px; max-width: 800px; margin: 80px auto; }
-        .options { display: flex; gap: 15px; margin: 15px 0; }
-        .options button { flex: 1; padding: 15px; background: transparent; border: 1px solid var(--border); color: white; border-radius: 12px; cursor: pointer; }
-        .options button.active { background: var(--gold); color: black; font-weight: 800; }
-        input { width: 100%; padding: 15px; background: rgba(0,0,0,0.2); border: 1px solid var(--border); color: white; border-radius: 12px; margin-top: 10px; }
-        .btn-send { width: 100%; padding: 20px; background: var(--gold); border: none; border-radius: 15px; margin-top: 30px; font-weight: 800; cursor: pointer; font-size: 1rem; }
+        .progress-bar-fill { background: var(--green); height: 100%; }
 
         footer { text-align: center; padding: 60px; color: #444; border-top: 1px solid var(--border); }
 
         @media (max-width: 850px) {
-            .feature-row, .feature-row.reverse { flex-direction: column; text-align: center; gap: 30px; }
+            .feature-row, .feature-row.reverse { flex-direction: column; text-align: center; }
             .feature-image { width: 100%; height: 300px; }
         }
     </style>
@@ -89,7 +99,7 @@
         <div class="logo" onclick="showTab('inicio')">🌿 Greenmind</div>
         <ul class="nav-links">
             <li onclick="showTab('inicio')" id="link-inicio" class="active">Home</li>
-            <li onclick="showTab('ideia')" id="link-ideia">Trajetória</li>
+            <li onclick="showTab('ideia')" id="link-ideia">Jornada</li>
             <li onclick="showTab('modelos')" id="link-modelos">Produtos</li>
             <li onclick="showTab('prototipo')" id="link-prototipo">Monitoramento</li>
         </ul>
@@ -99,21 +109,17 @@
         
         <section id="inicio" class="tab-content active">
             <div class="feature-row">
-                <div class="feature-image">
-                    <img src="historia.jpg" alt="Foto Trajetória">
-                </div>
+                <div class="feature-image"><img src="historia.jpg" alt="Foto Trajetória"></div>
                 <div class="feature-text">
                     <span class="tag">NOSSA HISTÓRIA</span>
                     <h2>Tecnologia que nasce no Senac.</h2>
                     <p>O Greenmind começou como um desafio acadêmico e se tornou uma solução inteligente para hortas urbanas.</p>
-                    <button class="btn-outline" onclick="showTab('ideia')">Conhecer Trajetória</button>
+                    <button class="btn-outline" onclick="showTab('ideia')">Conhecer Jornada</button>
                 </div>
             </div>
 
             <div class="feature-row reverse">
-                <div class="feature-image">
-                    <img src="modelos_todos.jpg" alt="Foto Produtos">
-                </div>
+                <div class="feature-image"><img src="modelos_todos.jpg" alt="Foto Produtos"></div>
                 <div class="feature-text">
                     <span class="tag">SOLUÇÕES</span>
                     <h2>Um kit para cada necessidade.</h2>
@@ -123,85 +129,142 @@
             </div>
 
             <div class="feature-row">
-                <div class="feature-image">
-                    <img src="prototipo_real.jpg" alt="Foto Protótipo">
-                </div>
+                <div class="feature-image"><img src="prototipo_real.jpg" alt="Foto Monitoramento"></div>
                 <div class="feature-text">
                     <span class="tag">INOVAÇÃO</span>
                     <h2>Monitoramento Inteligente.</h2>
-                    <p>Acompanhe a saúde das suas plantas através de dados reais de umidade e temperatura.</p>
+                    <p>Acompanhe a saúde das suas plantas através de dados reais de umidade e temperatura através do nosso painel.</p>
                     <button class="btn-outline" onclick="showTab('prototipo')">Acessar Painel</button>
                 </div>
             </div>
 
             <div id="form-section" class="research-form">
-                <h2>Pesquisa de Mercado</h2>
+                <h2 style="text-align: center; color: var(--gold); margin-bottom: 40px;">Pesquisa de Mercado</h2>
                 <form action="https://formsubmit.co/contato.greenmind@gmail.com" method="POST">
+                    
                     <div class="form-group">
-                        <label>Dificuldade com plantas?</label>
-                        <div class="options">
-                            <button type="button" onclick="selectOption(this,'dificuldade','Sim')">Sim</button>
-                            <button type="button" onclick="selectOption(this,'dificuldade','Não')">Não</button>
+                        <label>Você cultiva hortaliças em casa?</label>
+                        <div class="options-grid">
+                            <button type="button" onclick="selectOption(this,'cultiva','Sim')">Sim</button>
+                            <button type="button" onclick="selectOption(this,'cultiva','Não')">Não</button>
+                            <button type="button" onclick="selectOption(this,'cultiva','Pretendo')">Pretendo</button>
                         </div>
-                        <input type="hidden" name="dificuldade" required>
+                        <input type="hidden" name="cultiva" required>
                     </div>
+
                     <div class="form-group">
-                        <label>E-mail</label>
-                        <input type="email" name="email" required placeholder="exemplo@email.com">
+                        <label>Você consegue manter as plantas vivas e bonitas?</label>
+                        <div class="options-grid">
+                            <button type="button" onclick="selectOption(this,'vivas','Sim')">Sim</button>
+                            <button type="button" onclick="selectOption(this,'vivas','Com dificuldade')">Com dificuldade</button>
+                            <button type="button" onclick="selectOption(this,'vivas','Não')">Não</button>
+                        </div>
+                        <input type="hidden" name="vivas" required>
                     </div>
+
+                    <div class="form-group">
+                        <label>Compraria um vaso totalmente automático?</label>
+                        <div class="options-grid">
+                            <button type="button" onclick="selectOption(this,'automatico','Sim')">Sim</button>
+                            <button type="button" onclick="selectOption(this,'automatico','Talvez')">Talvez</button>
+                            <button type="button" onclick="selectOption(this,'automatico','Não')">Não</button>
+                        </div>
+                        <input type="hidden" name="automatico" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Quanto você pagaria por essa solução?</label>
+                        <div class="options-grid">
+                            <button type="button" onclick="selectOption(this,'valor','50')">R$ 50</button>
+                            <button type="button" onclick="selectOption(this,'valor','100')">R$ 100</button>
+                            <button type="button" onclick="selectOption(this,'valor','150')">R$ 150</button>
+                            <button type="button" onclick="selectOption(this,'valor','200')">R$ 200</button>
+                            <button type="button" onclick="selectOption(this,'valor','250')">R$ 250</button>
+                        </div>
+                        <input type="hidden" name="valor" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Algo mais que gostaria de nos dizer? (Sugestões/Dúvidas)</label>
+                        <textarea name="mensagem" placeholder="Sua opinião é muito importante para nós..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Seu E-mail para contato</label>
+                        <input type="email" name="email" required placeholder="seuemail@exemplo.com">
+                    </div>
+
                     <button type="submit" class="btn-send">Enviar Respostas</button>
                 </form>
             </div>
         </section>
 
         <section id="ideia" class="tab-content">
-            <h2 style="color: var(--gold); margin-bottom: 20px;">Nossa Jornada</h2>
-            <div class="monitor-card">
-                <p>O projeto Greenmind é focado no desenvolvimento de ferramentas digitais para jardinagem urbana.</p>
-                <p style="margin-top: 15px;">Desenvolvido por Isabelle, Richard e Sarah como parte da Jornada inicIA no Senac Blumenau.</p>
+            <div class="feature-row">
+                <div class="feature-text">
+                    <span class="tag">TRAJETÓRIA</span>
+                    <h2 class="gold-text">Nossa Jornada</h2>
+                    <p>O projeto Greenmind nasceu no Senac Blumenau com o propósito de unir tecnologia e sustentabilidade. Desenvolvido por Isabelle, Richard e Sarah, o sistema foca em automatizar o cuidado com as plantas para quem vive na correria urbana.</p>
+                </div>
+                <div class="feature-image">
+                    <img src="foto_jornada.jpg" alt="Equipe ou Processo">
+                </div>
             </div>
         </section>
 
         <section id="modelos" class="tab-content">
-            <h2 style="color: var(--gold); margin-bottom: 20px;">Nossos Modelos</h2>
-            <div class="stats-grid">
-                <div class="stat-box"><h3>Solo</h3><p>Eficiência compacta.</p></div>
-                <div class="stat-box"><h3>Duo</h3><p>Para o seu dia a dia.</p></div>
-                <div class="stat-box"><h3>Family</h3><p>Horta completa.</p></div>
+            <h2 class="gold-text" style="margin-bottom: 40px; text-align: center; font-size: 2.5rem;">Nossos Modelos</h2>
+            
+            <div class="product-card">
+                <div class="product-img-large"><img src="modelo_solo.jpg" alt="Modelo Solo"></div>
+                <div class="product-info">
+                    <h3>Greenmind Solo</h3>
+                    <p>O equilíbrio perfeito para quem está começando. Sistema compacto para uma planta com sensores de umidade individuais.</p>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-img-large"><img src="modelo_duo.jpg" alt="Modelo Duo"></div>
+                <div class="product-info">
+                    <h3>Greenmind Duo</h3>
+                    <p>Dobre sua produtividade. Ideal para temperos de cozinha como manjericão e alecrim, com rega automática independente.</p>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-img-large"><img src="modelo_family.jpg" alt="Modelo Family"></div>
+                <div class="product-info">
+                    <h3>Greenmind Family</h3>
+                    <p>A horta completa para sua família. Espaço para diversas hortaliças com painel de controle centralizado via Wi-Fi.</p>
+                </div>
             </div>
         </section>
 
         <section id="prototipo" class="tab-content">
-            <h2 style="color: var(--gold); margin-bottom: 20px;">Painel em Tempo Real</h2>
+            <h2 class="gold-text">Status do Sistema</h2>
             <div class="monitor-card">
-                <div class="progress-info">
-                    <span class="percent">85%</span>
-                    <span>Umidade do Solo</span>
+                <div class="progress-info" style="display: flex; justify-content: space-between; font-size: 1.5rem; font-weight: 800;">
+                    <span class="percent" style="color: var(--green);">85%</span>
+                    <span>Umidade: Ideal</span>
                 </div>
-                <div class="progress-bar-bg"><div class="progress-bar-fill green" style="width: 85%;"></div></div>
+                <div class="progress-bar-bg"><div class="progress-bar-fill" style="width: 85%;"></div></div>
             </div>
         </section>
 
     </div>
 
     <footer>
-        <p>Greenmind © 2026 | Senac Blumenau</p>
+        <p>Greenmind © 2026 | Desenvolvido no Senac Blumenau</p>
     </footer>
 
-
-    
     <script>
-        /* --- JAVASCRIPT --- */
         function showTab(tabId) {
             document.querySelectorAll('.tab-content').forEach(s => s.classList.remove('active'));
             document.querySelectorAll('.nav-links li').forEach(l => l.classList.remove('active'));
-            
             const target = document.getElementById(tabId);
             const link = document.getElementById('link-' + tabId);
-            
             if (target) target.classList.add('active');
             if (link) link.classList.add('active');
-            
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
@@ -209,7 +272,6 @@
             const parent = btn.parentElement;
             parent.querySelectorAll('button').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
-            
             const hiddenInput = parent.parentElement.querySelector(`input[name="${field}"]`);
             if (hiddenInput) hiddenInput.value = val;
         }
