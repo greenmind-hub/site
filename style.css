@@ -38,9 +38,92 @@ nav {
 
 .gold-text { color: var(--gold); }
 
-/* CARDS */
-.bento-container { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; }
-.bento-item { background: var(--glass); border: 1px solid var(--border); border-radius: 30px; padding: 40px; }
+/* Layout em Ziguezague */
+.feature-row {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    margin-bottom: 100px;
+    padding: 20px 0;
+}
+
+.feature-row.reverse {
+    flex-direction: row-reverse;
+}
+
+.feature-image {
+    flex: 1;
+    border-radius: 30px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    height: 400px;
+}
+
+.feature-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.feature-image:hover img {
+    transform: scale(1.05);
+}
+
+.feature-text {
+    flex: 1;
+}
+
+.tag {
+    color: var(--gold);
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+    display: block;
+    margin-bottom: 15px;
+}
+
+.feature-text h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+.feature-text p {
+    color: #aaa;
+    margin-bottom: 30px;
+    font-size: 1.1rem;
+}
+
+/* Botão Vazado Moderno */
+.btn-outline {
+    background: transparent;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    padding: 12px 30px;
+    border-radius: 50px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-outline:hover {
+    background: var(--gold);
+    color: #000;
+}
+
+/* Ajuste Mobile */
+@media (max-width: 850px) {
+    .feature-row, .feature-row.reverse {
+        flex-direction: column;
+        text-align: center;
+        gap: 30px;
+    }
+    .feature-image {
+        width: 100%;
+        height: 300px;
+    }
+}
 
 /* FORMULÁRIO */
 .research-form {
