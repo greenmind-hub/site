@@ -2,9 +2,11 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Greenmind | Tecnologia Verde</title>
+    
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+
     <style>
         :root {
             --gold: #d4af37;
@@ -22,75 +24,103 @@
             color: #e0e0e0;
             background-image: radial-gradient(circle at 50% 0%, #142d19 0%, #050a06 100%);
             background-attachment: fixed;
+            overflow-x: hidden;
         }
 
-        /* Navegação */
+        /* --- NAVEGAÇÃO OTIMIZADA --- */
         nav {
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 20px 8%; background: rgba(5, 10, 6, 0.95);
+            display: flex; flex-direction: column; align-items: center;
+            padding: 10px 5px; background: rgba(5, 10, 6, 0.98);
             position: fixed; width: 100%; top: 0; z-index: 1000;
             border-bottom: 1px solid var(--border); backdrop-filter: blur(10px);
         }
-        .logo { font-weight: 800; color: var(--gold); cursor: pointer; font-size: 1.5rem; }
-        .nav-links { display: flex; list-style: none; gap: 25px; }
-        .nav-links li { cursor: pointer; font-size: 0.8rem; color: #777; text-transform: uppercase; transition: 0.3s; }
-        .nav-links li.active { color: var(--gold); font-weight: 800; }
+        
+        .logo { font-weight: 800; color: var(--gold); cursor: pointer; font-size: 1.1rem; margin-bottom: 8px; }
 
-        .container { max-width: 1100px; margin: 120px auto 50px; padding: 0 20px; }
+        .nav-links { 
+            display: flex; list-style: none; width: 100%; 
+            justify-content: space-around; padding: 0 5px;
+        }
+
+        .nav-links li { 
+            cursor: pointer; font-size: 0.65rem; color: #777; 
+            text-transform: uppercase; transition: 0.3s;
+            padding: 8px 0; text-align: center; flex: 1;
+        }
+        .nav-links li.active { color: var(--gold); font-weight: 800; border-bottom: 2px solid var(--gold); }
+
+        /* --- CONTAINER --- */
+        .container { max-width: 1100px; margin: 100px auto 30px; padding: 0 15px; }
+
         .tab-content { display: none; }
-        .tab-content.active { display: block; animation: fadeIn 0.6s ease; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+        .tab-content.active { display: block; animation: fadeIn 0.4s ease; }
 
-        /* Estilo Ziguezague */
-        .feature-row { display: flex; align-items: center; gap: 60px; margin-bottom: 100px; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* --- LAYOUT ZIGUEZAGUE --- */
+        .feature-row { display: flex; align-items: center; gap: 40px; margin-bottom: 80px; }
         .feature-row.reverse { flex-direction: row-reverse; }
-        .feature-image { flex: 1.2; border-radius: 30px; overflow: hidden; border: 1px solid var(--border); height: 400px; background: #111; }
+        .feature-image { flex: 1.2; border-radius: 25px; overflow: hidden; border: 1px solid var(--border); height: 350px; background: #111; }
         .feature-image img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
         .feature-image:hover img { transform: scale(1.05); }
-        
+
         .feature-text { flex: 1; }
-        .feature-text p { margin-bottom: 40px; color: #aaa; line-height: 1.6; } 
-        .tag { color: var(--gold); font-size: 0.7rem; font-weight: 800; letter-spacing: 2px; margin-bottom: 15px; display: block; }
-        .feature-text h2 { font-size: 2.5rem; margin-bottom: 20px; color: white; line-height: 1.1; }
-        .btn-outline { background: transparent; border: 1px solid var(--gold); color: var(--gold); padding: 12px 35px; border-radius: 50px; cursor: pointer; transition: 0.3s; font-weight: 600; }
-        .btn-outline:hover { background: var(--gold); color: #000; }
+        .feature-text h2 { font-size: 2.2rem; margin-bottom: 15px; color: white; line-height: 1.1; }
+        .feature-text p { margin-bottom: 35px; color: #aaa; line-height: 1.6; }
+        .tag { color: var(--gold); font-size: 0.7rem; font-weight: 800; letter-spacing: 2px; margin-bottom: 10px; display: block; }
+        
+        .btn-outline { background: transparent; border: 1px solid var(--gold); color: var(--gold); padding: 12px 30px; border-radius: 50px; cursor: pointer; font-weight: 600; transition: 0.3s; }
+        .btn-outline:hover { background: var(--gold); color: black; }
 
-        /* Aba Produtos */
+        /* --- PRODUTOS (CARDS MAIORES) --- */
         .product-card { background: var(--glass); border: 1px solid var(--border); border-radius: 30px; overflow: hidden; margin-bottom: 40px; }
-        .product-img-large { width: 100%; height: 450px; background: #111; border-bottom: 1px solid var(--border); }
+        .product-img-large { width: 100%; height: 400px; background: #111; border-bottom: 1px solid var(--border); }
         .product-img-large img { width: 100%; height: 100%; object-fit: cover; }
-        .product-info { padding: 40px; }
-        .product-info h3 { font-size: 2rem; color: var(--gold); margin-bottom: 15px; }
+        .product-info { padding: 35px; }
+        .product-info h3 { font-size: 2rem; color: var(--gold); margin-bottom: 10px; }
 
-        /* Pesquisa */
-        .research-form { background: var(--glass); border: 1px solid var(--border); padding: 50px; border-radius: 30px; max-width: 850px; margin: 80px auto; }
-        .form-group { margin-bottom: 35px; }
-        .form-group label { display: block; margin-bottom: 15px; font-weight: 600; font-size: 1.1rem; }
+        /* --- PESQUISA --- */
+        .research-form { background: var(--glass); border: 1px solid var(--border); padding: 40px 25px; border-radius: 30px; max-width: 800px; margin: 60px auto; }
+        .form-group { margin-bottom: 30px; }
+        .form-group label { display: block; margin-bottom: 15px; font-weight: 600; }
+        
         .options-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 10px; }
         .options-grid button { padding: 15px; background: transparent; border: 1px solid var(--border); color: white; border-radius: 12px; cursor: pointer; transition: 0.3s; }
         .options-grid button.active { background: var(--gold); color: black; font-weight: 800; }
-        input, textarea { width: 100%; padding: 15px; background: rgba(0,0,0,0.3); border: 1px solid var(--border); color: white; border-radius: 12px; margin-top: 10px; font-size: 1rem; }
-        .btn-send { width: 100%; padding: 20px; background: var(--gold); border: none; border-radius: 15px; margin-top: 20px; font-weight: 800; cursor: pointer; font-size: 1.1rem; }
+        
+        input, textarea { width: 100%; padding: 15px; background: rgba(0,0,0,0.3); border: 1px solid var(--border); color: white; border-radius: 12px; margin-top: 10px; }
+        .btn-send { width: 100%; padding: 20px; background: var(--gold); border: none; border-radius: 15px; margin-top: 20px; font-weight: 800; cursor: pointer; }
 
-        /* Monitoramento (Lado Esquerdo e Direito) */
-        .monitor-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; margin-top: 20px; }
-        .monitor-card { background: var(--glass); border: 1px solid var(--border); padding: 30px; border-radius: 25px; }
+        /* --- MONITORAMENTO (LADO A LADO) --- */
+        .monitor-grid { display: grid; grid-template-columns: 1fr; gap: 20px; margin-top: 20px; }
+        .monitor-card { background: var(--glass); border: 1px solid var(--border); padding: 25px; border-radius: 25px; }
         .monitor-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 15px; }
-        .status-dot { width: 12px; height: 12px; border-radius: 50%; box-shadow: 0 0 10px currentColor; margin-top: 5px; }
-        .progress-info { display: flex; align-items: baseline; gap: 10px; margin-bottom: 8px; }
-        .percent { font-size: 2.2rem; font-weight: 800; }
-        .progress-bar-bg { width: 100%; height: 8px; background: rgba(255,255,255,0.1); border-radius: 10px; overflow: hidden; }
+        .percent { font-size: 2rem; font-weight: 800; }
+        .progress-bar-bg { width: 100%; height: 8px; background: rgba(255,255,255,0.1); border-radius: 10px; margin-top: 10px; }
         .progress-bar-fill { height: 100%; border-radius: 10px; }
-        .stats-mini-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 25px; }
-        .stat-box { background: rgba(255,255,255,0.05); padding: 12px 5px; border-radius: 12px; text-align: center; font-size: 0.75rem; color: #ccc; }
+        .stats-mini-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 20px; }
+        .stat-box { background: rgba(255,255,255,0.05); padding: 10px 5px; border-radius: 10px; text-align: center; font-size: 0.7rem; }
+
         .color-green { color: var(--green); background-color: var(--green); }
         .color-orange { color: var(--orange); background-color: var(--orange); }
 
-        footer { text-align: center; padding: 60px; color: #444; border-top: 1px solid var(--border); }
+        footer { text-align: center; padding: 50px 20px; color: #444; border-top: 1px solid var(--border); font-size: 0.8rem; }
 
-        @media (max-width: 900px) {
-            .monitor-grid { grid-template-columns: 1fr; }
+        /* --- MEDIA QUERIES --- */
+        @media (max-width: 768px) {
             .feature-row, .feature-row.reverse { flex-direction: column; text-align: center; }
+            .feature-image { width: 100%; height: 280px; }
+            .feature-text h2 { font-size: 1.8rem; }
+            .product-img-large { height: 280px; }
+        }
+
+        @media (min-width: 900px) {
+            nav { flex-direction: row; justify-content: space-between; padding: 20px 8%; }
+            .logo { font-size: 1.4rem; margin-bottom: 0; }
+            .nav-links { width: auto; gap: 30px; }
+            .nav-links li { flex: none; font-size: 0.8rem; }
+            .monitor-grid { grid-template-columns: 1fr 1fr; }
+            .container { margin-top: 120px; }
         }
     </style>
 </head>
@@ -102,7 +132,7 @@
             <li onclick="showTab('inicio')" id="link-inicio" class="active">Home</li>
             <li onclick="showTab('ideia')" id="link-ideia">Jornada</li>
             <li onclick="showTab('modelos')" id="link-modelos">Produtos</li>
-            <li onclick="showTab('prototipo')" id="link-prototipo">Monitoramento</li>
+            <li onclick="showTab('prototipo')" id="link-prototipo">Status</li>
         </ul>
     </nav>
 
@@ -110,37 +140,27 @@
         
         <section id="inicio" class="tab-content active">
             <div class="feature-row">
-                <div class="feature-image"><img src="historia.jpg" alt="Início Trajetória"></div>
+                <div class="feature-image"><img src="historia.jpg" alt="Início"></div>
                 <div class="feature-text">
-                    <span class="tag">CONHEÇA NOSSA BASE</span>
-                    <h2>Tecnologia que nasce no Senac.</h2>
-                    <p>O Greenmind começou como um desafio acadêmico e se tornou uma solução inteligente para hortas urbanas.</p>
+                    <span class="tag">NOSSA HISTÓRIA</span>
+                    <h2>Tecnologia do Senac.</h2>
+                    <p>O Greenmind nasceu no Senac Blumenau como uma resposta inteligente para hortas urbanas.</p>
                     <button class="btn-outline" onclick="showTab('ideia')">Nossa Jornada</button>
                 </div>
             </div>
 
             <div class="feature-row reverse">
-                <div class="feature-image"><img src="modelos_todos.jpg" alt="Modelos Greenmind"></div>
+                <div class="feature-image"><img src="modelos_todos.jpg" alt="Produtos"></div>
                 <div class="feature-text">
-                    <span class="tag">SOLUÇÕES MODULARES</span>
-                    <h2>Um kit para cada necessidade.</h2>
-                    <p>Dos modelos Solo aos familiares, integramos design moderno com automação eficiente para o seu lar.</p>
-                    <button class="btn-outline" onclick="showTab('modelos')">Ver Catálogo</button>
-                </div>
-            </div>
-
-            <div class="feature-row">
-                <div class="feature-image"><img src="prototipo.jpg" alt="Monitoramento"></div>
-                <div class="feature-text">
-                    <span class="tag">PAINEL DE CONTROLE</span>
-                    <h2>Inteligência nas suas mãos.</h2>
-                    <p>Acompanhe a saúde das suas plantas através de dados reais de umidade e temperatura através do nosso painel.</p>
-                    <button class="btn-outline" onclick="showTab('prototipo')">Acessar Painel</button>
+                    <span class="tag">SOLUÇÕES</span>
+                    <h2>Kits Inteligentes.</h2>
+                    <p>Do modelo Solo aos familiares, integramos design moderno com automação eficiente.</p>
+                    <button class="btn-outline" onclick="showTab('modelos')">Ver Produtos</button>
                 </div>
             </div>
 
             <div id="form-section" class="research-form">
-                <h2 style="text-align: center; color: var(--gold); margin-bottom: 40px;">Pesquisa de Mercado</h2>
+                <h2 style="text-align: center; color: var(--gold); margin-bottom: 30px;">Pesquisa Greenmind</h2>
                 <form action="https://formsubmit.co/contato.greenmind@gmail.com" method="POST">
                     
                     <div class="form-group">
@@ -154,17 +174,17 @@
                     </div>
 
                     <div class="form-group">
-                        <label>Você consegue manter as plantas vivas e bonitas?</label>
+                        <label>Consegue manter as plantas vivas?</label>
                         <div class="options-grid">
                             <button type="button" onclick="selectOption(this,'vivas','Sim')">Sim</button>
-                            <button type="button" onclick="selectOption(this,'vivas','Com dificuldade')">Dificuldade</button>
+                            <button type="button" onclick="selectOption(this,'vivas','Dificuldade')">Dificuldade</button>
                             <button type="button" onclick="selectOption(this,'vivas','Não')">Não</button>
                         </div>
                         <input type="hidden" name="vivas" required>
                     </div>
 
                     <div class="form-group">
-                        <label>Compraria um vaso totalmente automático?</label>
+                        <label>Compraria um vaso automático?</label>
                         <div class="options-grid">
                             <button type="button" onclick="selectOption(this,'automatico','Sim')">Sim</button>
                             <button type="button" onclick="selectOption(this,'automatico','Talvez')">Talvez</button>
@@ -174,7 +194,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label>Quanto você pagaria por essa solução?</label>
+                        <label>Quanto você pagaria?</label>
                         <div class="options-grid">
                             <button type="button" onclick="selectOption(this,'valor','50')">R$ 50</button>
                             <button type="button" onclick="selectOption(this,'valor','100')">R$ 100</button>
@@ -186,128 +206,93 @@
                     </div>
 
                     <div class="form-group">
-                        <label>Sugestões ou dúvidas:</label>
-                        <textarea name="mensagem" placeholder="Escreva aqui..."></textarea>
+                        <label>Escreva algo para nós:</label>
+                        <textarea name="mensagem" placeholder="Dúvidas ou sugestões..."></textarea>
                     </div>
 
                     <div class="form-group">
-                        <label>Seu E-mail</label>
+                        <label>Seu E-mail:</label>
                         <input type="email" name="email" required placeholder="seu@email.com">
                     </div>
 
-                    <button type="submit" class="btn-send">Enviar para Greenmind</button>
+                    <button type="submit" class="btn-send">Enviar para a Equipe</button>
                 </form>
             </div>
         </section>
 
         <section id="ideia" class="tab-content">
-            <h2 class="gold-text" style="text-align: center; margin-bottom: 60px; font-size: 2.5rem;">Nossa Trajetória</h2>
+            <h2 class="gold-text" style="text-align: center; margin-bottom: 40px;">Nossa Trajetória</h2>
             
             <div class="feature-row">
-                <div class="feature-image"><img src="senac.jpg" alt="Senac Blumenau"></div>
+                <div class="feature-image"><img src="senac.jpg" alt="Senac"></div>
                 <div class="feature-text">
-                    <span class="tag">O COMEÇO</span>
+                    <span class="tag">FORMAÇÃO</span>
                     <h2>Senac Blumenau</h2>
-                    <p>Onde tudo começou. Entre laboratórios e mentorias, o Greenmind nasceu como uma resposta à vontade de reconectar pessoas à natureza através da tecnologia educacional e prática.</p>
+                    <p>O berço do projeto, onde unimos teoria e prática para criar soluções sustentáveis.</p>
                 </div>
             </div>
 
             <div class="feature-row reverse">
-                <div class="feature-image"><img src="foto_jornada.jpg" alt="WK Sistemas"></div>
+                <div class="feature-image"><img src="wk.jpg" alt="WK"></div>
                 <div class="feature-text">
-                    <span class="tag">APRENDIZADO</span>
+                    <span class="tag">ESTRUTURA</span>
                     <h2>WK Sistemas</h2>
-                    <p>Nossa parceria e vivência na WK nos proporcionou a base técnica e organizacional necessária para transformar uma ideia acadêmica em um projeto com estrutura de mercado.</p>
+                    <p>Vivência empresarial que trouxe a base técnica para o desenvolvimento do nosso sistema.</p>
                 </div>
             </div>
 
             <div class="feature-row">
-                <div class="feature-image"><img src="gene_start.jpg" alt="Gene Start"></div>
+                <div class="feature-image"><img src="gene_start.jpg" alt="Gene"></div>
                 <div class="feature-text">
-                    <span class="tag">ACELERAÇÃO</span>
-                    <h2>Instituto Gene: Gene Start</h2>
-                    <p>Atualmente, o Greenmind faz parte do programa Gene Start do Instituto Gene, onde estamos validando nosso modelo de negócio e preparando o terreno para o futuro das hortas inteligentes.</p>
+                    <span class="tag">FUTURO</span>
+                    <h2>Gene Start</h2>
+                    <p>Participamos da iniciativa do Instituto Gene, validando nossa startup no mercado.</p>
                 </div>
             </div>
         </section>
 
         <section id="modelos" class="tab-content">
-            <h2 class="gold-text" style="text-align: center; margin-bottom: 40px; font-size: 2.5rem;">Catálogo Premium</h2>
-            
             <div class="product-card">
-                <div class="product-img-large"><img src="modelo_solo.png" alt="Greenmind Solo"></div>
-                <div class="product-info">
-                    <h3>Greenmind Solo</h3>
-                    <p>Compacto e eficiente. Ideal para quem deseja iniciar no cultivo automatizado com apenas uma planta.</p>
-                </div>
+                <div class="product-img-large"><img src="modelo_solo.jpg" alt="Solo"></div>
+                <div class="product-info"><h3>Solo</h3><p>Perfeito para uma planta.</p></div>
             </div>
-
             <div class="product-card">
-                <div class="product-img-large"><img src="modelo_duo.png" alt="Greenmind Duo"></div>
-                <div class="product-info">
-                    <h3>Greenmind Duo</h3>
-                    <p>Dois compartimentos independentes. Perfeito para o cultivo de temperos e hortaliças variadas na cozinha.</p>
-                </div>
+                <div class="product-img-large"><img src="modelo_duo.jpg" alt="Duo"></div>
+                <div class="product-info"><h3>Duo</h3><p>Cultivo duplo inteligente.</p></div>
             </div>
-
             <div class="product-card">
-                <div class="product-img-large"><img src="modelo_family.png" alt="Greenmind Family"></div>
-                <div class="product-info">
-                    <h3>Greenmind Family</h3>
-                    <p>Capacidade máxima para quem leva a sério a alimentação saudável em casa. Controle total Wi-Fi.</p>
-                </div>
+                <div class="product-img-large"><img src="modelo_family.jpg" alt="Family"></div>
+                <div class="product-info"><h3>Family</h3><p>A horta completa da família.</p></div>
             </div>
         </section>
 
         <section id="prototipo" class="tab-content">
-            <h2 class="gold-text" style="text-align: center; margin-bottom: 40px; font-size: 2.5rem;">Painel Greenmind Duo</h2>
-            
+            <h2 class="gold-text" style="text-align: center; margin-bottom: 30px;">Monitoramento em Tempo Real</h2>
             <div class="monitor-grid">
                 <div class="monitor-card">
                     <div class="monitor-header">
-                        <div>
-                            <h3>Lado Esquerdo</h3>
-                            <span style="color: #888; font-size: 0.8rem;">Salsinha</span>
-                        </div>
-                        <div class="status-dot color-green"></div>
+                        <h4>Esquerdo (Salsinha)</h4>
+                        <div style="width: 10px; height: 10px; border-radius: 50%;" class="color-green"></div>
                     </div>
-                    <div class="progress-container">
-                        <div class="progress-info">
-                            <span class="percent color-green">82%</span>
-                            <span style="font-weight: 600;">Umidade Ideal</span>
-                        </div>
-                        <div class="progress-bar-bg">
-                            <div class="progress-bar-fill color-green" style="width: 82%;"></div>
-                        </div>
-                    </div>
+                    <div class="percent color-green">82%</div>
+                    <div class="progress-bar-bg"><div class="progress-bar-fill color-green" style="width: 82%;"></div></div>
                     <div class="stats-mini-grid">
-                        <div class="stat-box">Temp: 24°C</div>
-                        <div class="stat-box">Luz: Alta</div>
-                        <div class="stat-box">Rega: Hoje</div>
+                        <div class="stat-box">24°C</div>
+                        <div class="stat-box">Luz OK</div>
+                        <div class="stat-box">Rega Hoje</div>
                     </div>
                 </div>
-
                 <div class="monitor-card">
                     <div class="monitor-header">
-                        <div>
-                            <h3>Lado Direito</h3>
-                            <span style="color: #888; font-size: 0.8rem;">Alecrim</span>
-                        </div>
-                        <div class="status-dot color-orange"></div>
+                        <h4>Direito (Alecrim)</h4>
+                        <div style="width: 10px; height: 10px; border-radius: 50%;" class="color-orange"></div>
                     </div>
-                    <div class="progress-container">
-                        <div class="progress-info">
-                            <span class="percent color-orange">65%</span>
-                            <span style="font-weight: 600;">Umidade Média</span>
-                        </div>
-                        <div class="progress-bar-bg">
-                            <div class="progress-bar-fill color-orange" style="width: 65%;"></div>
-                        </div>
-                    </div>
+                    <div class="percent color-orange">65%</div>
+                    <div class="progress-bar-bg"><div class="progress-bar-fill color-orange" style="width: 65%;"></div></div>
                     <div class="stats-mini-grid">
-                        <div class="stat-box">Temp: 25°C</div>
-                        <div class="stat-box">Luz: Média</div>
-                        <div class="stat-box">Rega: Ontem</div>
+                        <div class="stat-box">25°C</div>
+                        <div class="stat-box">Luz Média</div>
+                        <div class="stat-box">Rega Ontem</div>
                     </div>
                 </div>
             </div>
@@ -325,9 +310,11 @@
             document.querySelectorAll('.nav-links li').forEach(l => l.classList.remove('active'));
             const target = document.getElementById(tabId);
             const link = document.getElementById('link-' + tabId);
-            if (target) target.classList.add('active');
-            if (link) link.classList.add('active');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            if (target) {
+                target.classList.add('active');
+                link.classList.add('active');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
         }
 
         function selectOption(btn, field, val) {
