@@ -9,6 +9,7 @@
         :root {
             --gold: #d4af37;
             --green: #22c55e;
+            --orange: #f59e0b;
             --dark: #050a06;
             --glass: rgba(20, 40, 25, 0.9);
             --border: rgba(212, 175, 55, 0.2);
@@ -40,56 +41,56 @@
         .tab-content.active { display: block; animation: fadeIn 0.6s ease; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* Estilo Ziguezague e Espaçamentos */
+        /* Estilo Ziguezague */
         .feature-row { display: flex; align-items: center; gap: 60px; margin-bottom: 100px; }
         .feature-row.reverse { flex-direction: row-reverse; }
         .feature-image { flex: 1.2; border-radius: 30px; overflow: hidden; border: 1px solid var(--border); height: 400px; background: #111; }
-        .feature-image img { width: 100%; height: 100%; object-fit: cover; }
+        .feature-image img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+        .feature-image:hover img { transform: scale(1.05); }
         
         .feature-text { flex: 1; }
-        .feature-text p { margin-bottom: 40px; color: #aaa; line-height: 1.6; } /* Espaço maior antes do botão */
-        
+        .feature-text p { margin-bottom: 40px; color: #aaa; line-height: 1.6; } 
         .tag { color: var(--gold); font-size: 0.7rem; font-weight: 800; letter-spacing: 2px; margin-bottom: 15px; display: block; }
         .feature-text h2 { font-size: 2.5rem; margin-bottom: 20px; color: white; line-height: 1.1; }
-        
         .btn-outline { background: transparent; border: 1px solid var(--gold); color: var(--gold); padding: 12px 35px; border-radius: 50px; cursor: pointer; transition: 0.3s; font-weight: 600; }
-        .btn-outline:hover { background: var(--gold); color: black; }
+        .btn-outline:hover { background: var(--gold); color: #000; }
 
-        /* Aba Produtos - Cards Maiores */
-        .product-card { 
-            background: var(--glass); border: 1px solid var(--border); 
-            border-radius: 30px; overflow: hidden; margin-bottom: 40px;
-            display: flex; flex-direction: column;
-        }
+        /* Aba Produtos */
+        .product-card { background: var(--glass); border: 1px solid var(--border); border-radius: 30px; overflow: hidden; margin-bottom: 40px; }
         .product-img-large { width: 100%; height: 450px; background: #111; border-bottom: 1px solid var(--border); }
         .product-img-large img { width: 100%; height: 100%; object-fit: cover; }
         .product-info { padding: 40px; }
         .product-info h3 { font-size: 2rem; color: var(--gold); margin-bottom: 15px; }
 
-        /* Pesquisa Melhorada */
+        /* Pesquisa */
         .research-form { background: var(--glass); border: 1px solid var(--border); padding: 50px; border-radius: 30px; max-width: 850px; margin: 80px auto; }
         .form-group { margin-bottom: 35px; }
         .form-group label { display: block; margin-bottom: 15px; font-weight: 600; font-size: 1.1rem; }
-        
         .options-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 10px; }
         .options-grid button { padding: 15px; background: transparent; border: 1px solid var(--border); color: white; border-radius: 12px; cursor: pointer; transition: 0.3s; }
-        .options-grid button.active { background: var(--gold); color: black; font-weight: 800; border-color: var(--gold); }
-        
+        .options-grid button.active { background: var(--gold); color: black; font-weight: 800; }
         input, textarea { width: 100%; padding: 15px; background: rgba(0,0,0,0.3); border: 1px solid var(--border); color: white; border-radius: 12px; margin-top: 10px; font-size: 1rem; }
-        textarea { height: 120px; resize: none; }
-        
         .btn-send { width: 100%; padding: 20px; background: var(--gold); border: none; border-radius: 15px; margin-top: 20px; font-weight: 800; cursor: pointer; font-size: 1.1rem; }
 
-        /* Monitoramento */
-        .monitor-card { background: var(--glass); border: 1px solid var(--border); padding: 30px; border-radius: 25px; margin-top: 20px; }
-        .progress-bar-bg { width: 100%; height: 10px; background: rgba(255,255,255,0.1); border-radius: 10px; overflow: hidden; margin-top: 10px; }
-        .progress-bar-fill { background: var(--green); height: 100%; }
+        /* Monitoramento (Lado Esquerdo e Direito) */
+        .monitor-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; margin-top: 20px; }
+        .monitor-card { background: var(--glass); border: 1px solid var(--border); padding: 30px; border-radius: 25px; }
+        .monitor-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 15px; }
+        .status-dot { width: 12px; height: 12px; border-radius: 50%; box-shadow: 0 0 10px currentColor; margin-top: 5px; }
+        .progress-info { display: flex; align-items: baseline; gap: 10px; margin-bottom: 8px; }
+        .percent { font-size: 2.2rem; font-weight: 800; }
+        .progress-bar-bg { width: 100%; height: 8px; background: rgba(255,255,255,0.1); border-radius: 10px; overflow: hidden; }
+        .progress-bar-fill { height: 100%; border-radius: 10px; }
+        .stats-mini-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 25px; }
+        .stat-box { background: rgba(255,255,255,0.05); padding: 12px 5px; border-radius: 12px; text-align: center; font-size: 0.75rem; color: #ccc; }
+        .color-green { color: var(--green); background-color: var(--green); }
+        .color-orange { color: var(--orange); background-color: var(--orange); }
 
         footer { text-align: center; padding: 60px; color: #444; border-top: 1px solid var(--border); }
 
-        @media (max-width: 850px) {
+        @media (max-width: 900px) {
+            .monitor-grid { grid-template-columns: 1fr; }
             .feature-row, .feature-row.reverse { flex-direction: column; text-align: center; }
-            .feature-image { width: 100%; height: 300px; }
         }
     </style>
 </head>
@@ -109,30 +110,30 @@
         
         <section id="inicio" class="tab-content active">
             <div class="feature-row">
-                <div class="feature-image"><img src="historia.jpg" alt="Foto Trajetória"></div>
+                <div class="feature-image"><img src="historia.jpg" alt="Início Trajetória"></div>
                 <div class="feature-text">
-                    <span class="tag">NOSSA HISTÓRIA</span>
+                    <span class="tag">CONHEÇA NOSSA BASE</span>
                     <h2>Tecnologia que nasce no Senac.</h2>
                     <p>O Greenmind começou como um desafio acadêmico e se tornou uma solução inteligente para hortas urbanas.</p>
-                    <button class="btn-outline" onclick="showTab('ideia')">Conhecer Jornada</button>
+                    <button class="btn-outline" onclick="showTab('ideia')">Nossa Jornada</button>
                 </div>
             </div>
 
             <div class="feature-row reverse">
-                <div class="feature-image"><img src="modelos_todos.jpg" alt="Foto Produtos"></div>
+                <div class="feature-image"><img src="modelos_todos.jpg" alt="Modelos Greenmind"></div>
                 <div class="feature-text">
-                    <span class="tag">SOLUÇÕES</span>
+                    <span class="tag">SOLUÇÕES MODULARES</span>
                     <h2>Um kit para cada necessidade.</h2>
                     <p>Dos modelos Solo aos familiares, integramos design moderno com automação eficiente para o seu lar.</p>
-                    <button class="btn-outline" onclick="showTab('modelos')">Ver Produtos</button>
+                    <button class="btn-outline" onclick="showTab('modelos')">Ver Catálogo</button>
                 </div>
             </div>
 
             <div class="feature-row">
-                <div class="feature-image"><img src="prototipo_real.jpg" alt="Foto Monitoramento"></div>
+                <div class="feature-image"><img src="prototipo_real.jpg" alt="Monitoramento"></div>
                 <div class="feature-text">
-                    <span class="tag">INOVAÇÃO</span>
-                    <h2>Monitoramento Inteligente.</h2>
+                    <span class="tag">PAINEL DE CONTROLE</span>
+                    <h2>Inteligência nas suas mãos.</h2>
                     <p>Acompanhe a saúde das suas plantas através de dados reais de umidade e temperatura através do nosso painel.</p>
                     <button class="btn-outline" onclick="showTab('prototipo')">Acessar Painel</button>
                 </div>
@@ -156,7 +157,7 @@
                         <label>Você consegue manter as plantas vivas e bonitas?</label>
                         <div class="options-grid">
                             <button type="button" onclick="selectOption(this,'vivas','Sim')">Sim</button>
-                            <button type="button" onclick="selectOption(this,'vivas','Com dificuldade')">Com dificuldade</button>
+                            <button type="button" onclick="selectOption(this,'vivas','Com dificuldade')">Dificuldade</button>
                             <button type="button" onclick="selectOption(this,'vivas','Não')">Não</button>
                         </div>
                         <input type="hidden" name="vivas" required>
@@ -185,76 +186,137 @@
                     </div>
 
                     <div class="form-group">
-                        <label>Algo mais que gostaria de nos dizer? (Sugestões/Dúvidas)</label>
-                        <textarea name="mensagem" placeholder="Sua opinião é muito importante para nós..."></textarea>
+                        <label>Sugestões ou dúvidas:</label>
+                        <textarea name="mensagem" placeholder="Escreva aqui..."></textarea>
                     </div>
 
                     <div class="form-group">
-                        <label>Seu E-mail para contato</label>
-                        <input type="email" name="email" required placeholder="seuemail@exemplo.com">
+                        <label>Seu E-mail</label>
+                        <input type="email" name="email" required placeholder="seu@email.com">
                     </div>
 
-                    <button type="submit" class="btn-send">Enviar Respostas</button>
+                    <button type="submit" class="btn-send">Enviar para Greenmind</button>
                 </form>
             </div>
         </section>
 
         <section id="ideia" class="tab-content">
+            <h2 class="gold-text" style="text-align: center; margin-bottom: 60px; font-size: 2.5rem;">Nossa Trajetória</h2>
+            
             <div class="feature-row">
+                <div class="feature-image"><img src="senac.jpg" alt="Senac Blumenau"></div>
                 <div class="feature-text">
-                    <span class="tag">TRAJETÓRIA</span>
-                    <h2 class="gold-text">Nossa Jornada</h2>
-                    <p>O projeto Greenmind nasceu no Senac Blumenau com o propósito de unir tecnologia e sustentabilidade. Desenvolvido por Isabelle, Richard e Sarah, o sistema foca em automatizar o cuidado com as plantas para quem vive na correria urbana.</p>
+                    <span class="tag">O COMEÇO</span>
+                    <h2>Senac Blumenau</h2>
+                    <p>Onde tudo começou. Entre laboratórios e mentorias, o Greenmind nasceu como uma resposta à vontade de reconectar pessoas à natureza através da tecnologia educacional e prática.</p>
                 </div>
-                <div class="feature-image">
-                    <img src="foto_jornada.jpg" alt="Equipe ou Processo">
+            </div>
+
+            <div class="feature-row reverse">
+                <div class="feature-image"><img src="wk.jpg" alt="WK Sistemas"></div>
+                <div class="feature-text">
+                    <span class="tag">APRENDIZADO</span>
+                    <h2>WK Sistemas</h2>
+                    <p>Nossa parceria e vivência na WK nos proporcionou a base técnica e organizacional necessária para transformar uma ideia acadêmica em um projeto com estrutura de mercado.</p>
+                </div>
+            </div>
+
+            <div class="feature-row">
+                <div class="feature-image"><img src="gene_start.jpg" alt="Gene Start"></div>
+                <div class="feature-text">
+                    <span class="tag">ACELERAÇÃO</span>
+                    <h2>Instituto Gene: Gene Start</h2>
+                    <p>Atualmente, o Greenmind faz parte do programa Gene Start do Instituto Gene, onde estamos validando nosso modelo de negócio e preparando o terreno para o futuro das hortas inteligentes.</p>
                 </div>
             </div>
         </section>
 
         <section id="modelos" class="tab-content">
-            <h2 class="gold-text" style="margin-bottom: 40px; text-align: center; font-size: 2.5rem;">Nossos Modelos</h2>
+            <h2 class="gold-text" style="text-align: center; margin-bottom: 40px; font-size: 2.5rem;">Catálogo Premium</h2>
             
             <div class="product-card">
-                <div class="product-img-large"><img src="modelo_solo.png" alt="Modelo Solo"></div>
+                <div class="product-img-large"><img src="modelo_solo.jpg" alt="Greenmind Solo"></div>
                 <div class="product-info">
                     <h3>Greenmind Solo</h3>
-                    <p>O equilíbrio perfeito para quem está começando. Sistema compacto para uma planta com sensores de umidade individuais.</p>
+                    <p>Compacto e eficiente. Ideal para quem deseja iniciar no cultivo automatizado com apenas uma planta.</p>
                 </div>
             </div>
 
             <div class="product-card">
-                <div class="product-img-large"><img src="modelo_duo.png" alt="Modelo Duo"></div>
+                <div class="product-img-large"><img src="modelo_duo.jpg" alt="Greenmind Duo"></div>
                 <div class="product-info">
                     <h3>Greenmind Duo</h3>
-                    <p>Dobre sua produtividade. Ideal para temperos de cozinha como manjericão e alecrim, com rega automática independente.</p>
+                    <p>Dois compartimentos independentes. Perfeito para o cultivo de temperos e hortaliças variadas na cozinha.</p>
                 </div>
             </div>
 
             <div class="product-card">
-                <div class="product-img-large"><img src="modelo_family.png" alt="Modelo Family"></div>
+                <div class="product-img-large"><img src="modelo_family.jpg" alt="Greenmind Family"></div>
                 <div class="product-info">
                     <h3>Greenmind Family</h3>
-                    <p>A horta completa para sua família. Espaço para diversas hortaliças com painel de controle centralizado via Wi-Fi.</p>
+                    <p>Capacidade máxima para quem leva a sério a alimentação saudável em casa. Controle total Wi-Fi.</p>
                 </div>
             </div>
         </section>
 
         <section id="prototipo" class="tab-content">
-            <h2 class="gold-text">Status do Sistema</h2>
-            <div class="monitor-card">
-                <div class="progress-info" style="display: flex; justify-content: space-between; font-size: 1.5rem; font-weight: 800;">
-                    <span class="percent" style="color: var(--green);">85%</span>
-                    <span>Umidade: Ideal</span>
+            <h2 class="gold-text" style="text-align: center; margin-bottom: 40px; font-size: 2.5rem;">Painel Greenmind Duo</h2>
+            
+            <div class="monitor-grid">
+                <div class="monitor-card">
+                    <div class="monitor-header">
+                        <div>
+                            <h3>Lado Esquerdo</h3>
+                            <span style="color: #888; font-size: 0.8rem;">Salsinha</span>
+                        </div>
+                        <div class="status-dot color-green"></div>
+                    </div>
+                    <div class="progress-container">
+                        <div class="progress-info">
+                            <span class="percent color-green">82%</span>
+                            <span style="font-weight: 600;">Umidade Ideal</span>
+                        </div>
+                        <div class="progress-bar-bg">
+                            <div class="progress-bar-fill color-green" style="width: 82%;"></div>
+                        </div>
+                    </div>
+                    <div class="stats-mini-grid">
+                        <div class="stat-box">Temp: 24°C</div>
+                        <div class="stat-box">Luz: Alta</div>
+                        <div class="stat-box">Rega: Hoje</div>
+                    </div>
                 </div>
-                <div class="progress-bar-bg"><div class="progress-bar-fill" style="width: 85%;"></div></div>
+
+                <div class="monitor-card">
+                    <div class="monitor-header">
+                        <div>
+                            <h3>Lado Direito</h3>
+                            <span style="color: #888; font-size: 0.8rem;">Alecrim</span>
+                        </div>
+                        <div class="status-dot color-orange"></div>
+                    </div>
+                    <div class="progress-container">
+                        <div class="progress-info">
+                            <span class="percent color-orange">65%</span>
+                            <span style="font-weight: 600;">Umidade Média</span>
+                        </div>
+                        <div class="progress-bar-bg">
+                            <div class="progress-bar-fill color-orange" style="width: 65%;"></div>
+                        </div>
+                    </div>
+                    <div class="stats-mini-grid">
+                        <div class="stat-box">Temp: 25°C</div>
+                        <div class="stat-box">Luz: Média</div>
+                        <div class="stat-box">Rega: Ontem</div>
+                    </div>
+                </div>
             </div>
         </section>
 
     </div>
 
     <footer>
-        <p>Greenmind © 2026 | Desenvolvido no Senac Blumenau</p>
+        <p>Greenmind © 2026 | Isabelle Duarte Belo | Richard Wagenknecht | Sarah Julia Antunes Velho</p>
     </footer>
 
     <script>
