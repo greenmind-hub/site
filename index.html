@@ -22,70 +22,151 @@
     <div class="container">
         
         <section id="inicio" class="tab-content active">
-    
-    <div class="feature-row">
-        <div class="feature-image">
-            <img src="historia.jpg" alt="Nossa Trajetória">
-        </div>
-        <div class="feature-text">
-            <span class="tag">NOSSA HISTÓRIA</span>
-            <h2>Inovação que nasce da necessidade.</h2>
-            <p>Conheça a trajetória da GreenMind, desde as salas do Senac até o desenvolvimento de uma IA premiada para o cuidado de plantas.</p>
-            <button class="btn-outline" onclick="showTab('ideia')">Ver a Ideia</button>
-        </div>
-    </div>
+            
+            <div class="feature-row">
+                <div class="feature-image">
+                    <img src="historia.jpg" alt="Trajetória GreenMind">
+                </div>
+                <div class="feature-text">
+                    <span class="tag">NOSSA HISTÓRIA</span>
+                    <h2>Inovação que nasce da necessidade.</h2>
+                    <p>Conheça a trajetória da GreenMind, desde as salas do Senac até o desenvolvimento de uma IA premiada para o cuidado de plantas.</p>
+                    <button class="btn-outline" onclick="showTab('ideia')">Ver a Ideia</button>
+                </div>
+            </div>
 
-    <div class="feature-row reverse">
-        <div class="feature-image">
-            <img src="modelos_todos.jpg" alt="Nossos Modelos">
-        </div>
-        <div class="feature-text">
-            <span class="tag">PRODUTOS</span>
-            <h2>Um modelo para cada espaço.</h2>
-            <p>Seja para um apartamento pequeno ou para uma casa espaçosa, nossos kits Solo, Duo e Family se adaptam ao seu estilo de vida.</p>
-            <button class="btn-outline" onclick="showTab('modelos')">Explorar Modelos</button>
-        </div>
-    </div>
+            <div class="feature-row reverse">
+                <div class="feature-image">
+                    <img src="modelos_todos.jpg" alt="Nossos Modelos">
+                </div>
+                <div class="feature-text">
+                    <span class="tag">PRODUTOS</span>
+                    <h2>Um modelo para cada espaço.</h2>
+                    <p>Seja para um apartamento pequeno ou para uma casa espaçosa, nossos kits Solo, Duo e Family se adaptam ao seu estilo de vida.</p>
+                    <button class="btn-outline" onclick="showTab('modelos')">Explorar Modelos</button>
+                </div>
+            </div>
 
-    <div class="feature-row">
-        <div class="feature-image">
-            <img src="prototipo_real.jpg" alt="Protótipo em funcionamento">
-        </div>
-        <div class="feature-text">
-            <span class="tag">TECNOLOGIA</span>
-            <h2>Monitoramento em tempo real.</h2>
-            <p>Veja como os nossos sensores de umidade e luz trabalham junto com o ESP32 para garantir que sua planta nunca fique com sede.</p>
-            <button class="btn-outline" onclick="showTab('prototipo')">Ver Protótipo</button>
-        </div>
-    </div>
+            <div class="feature-row">
+                <div class="feature-image">
+                    <img src="prototipo_real.jpg" alt="Tecnologia GreenMind">
+                </div>
+                <div class="feature-text">
+                    <span class="tag">TECNOLOGIA</span>
+                    <h2>Monitoramento em tempo real.</h2>
+                    <p>Veja como os nossos sensores de umidade e luz trabalham junto com o ESP32 para garantir que sua planta nunca fique com sede.</p>
+                    <button class="btn-outline" onclick="showTab('prototipo')">Ver Protótipo</button>
+                </div>
+            </div>
 
-    <div id="form-section" class="research-form">
-        <h2 style="text-align: center; color: var(--gold); margin-bottom: 30px;">Participe da nossa pesquisa</h2>
-        <form action="https://formsubmit.co/contato.greenmind@gmail.com" method="POST">
-            <button type="submit" class="btn-send">Enviar Respostas</button>
-        </form>
-    </div>
-</section>
+            <div id="form-section" class="research-form">
+                <h2 style="text-align: center; color: var(--gold); margin-bottom: 10px;">Participe da nossa pesquisa</h2>
+                <p style="text-align: center; color: #888; margin-bottom: 30px;">Suas respostas serão enviadas para contato.greenmind@gmail.com</p>
+                
+                <form action="https://formsubmit.co/contato.greenmind@gmail.com" method="POST">
+                    <input type="hidden" name="_subject" value="Nova resposta de Pesquisa - GreenMind">
+                    <input type="hidden" name="_captcha" value="false">
+                    
+                    <div class="form-group">
+                        <label>Dificuldade com plantas?</label>
+                        <div class="options">
+                            <button type="button" onclick="selectOption(this,'dificuldade','Sim')">Sim</button>
+                            <button type="button" onclick="selectOption(this,'dificuldade','Às vezes')">Às vezes</button>
+                            <button type="button" onclick="selectOption(this,'dificuldade','Não')">Não</button>
+                        </div>
+                        <input type="hidden" name="dificuldade" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Usaria automação?</label>
+                        <div class="options">
+                            <button type="button" onclick="selectOption(this,'interesse','Sim')">Sim</button>
+                            <button type="button" onclick="selectOption(this,'interesse','Talvez')">Talvez</button>
+                            <button type="button" onclick="selectOption(this,'interesse','Não')">Não</button>
+                        </div>
+                        <input type="hidden" name="interesse" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Quanto pagaria?</label>
+                        <input type="text" name="preco" placeholder="Ex: R$150" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" name="email" required>
+                    </div>
+
+                    <button type="submit" class="btn-send">Enviar Respostas</button>
+                </form>
+            </div>
+        </section>
 
         <section id="ideia" class="tab-content">
-            <h2>Nossa Trajetória</h2>
-            <p>Projeto nascido no Senac Blumenau.</p>
+            <h2 class="gold-text">Nossa Trajetória</h2>
+            <p>Conte aqui a história do projeto no Senac Blumenau e a Jornada inicIA.</p>
         </section>
 
         <section id="modelos" class="tab-content">
-            <h2>Modelos</h2>
-            <p>Solo, Duo e Family.</p>
+            <h2 class="gold-text">Modelos Disponíveis</h2>
+            <p>Detalhes sobre Solo, Duo e Family.</p>
         </section>
 
         <section id="prototipo" class="tab-content">
-            <h2>Monitoramento em Tempo Real</h2>
-            <p>Conectado via MQTT/ESP32.</p>
+            <div class="monitor-card">
+                <div class="monitor-header">
+                    <div>
+                        <h3>Lado Esquerdo</h3>
+                        <span style="color: #888;">Salsinha</span>
+                    </div>
+                    <div class="status-dot green"></div>
+                </div>
+                <div class="progress-container">
+                    <div class="progress-info">
+                        <span class="percent green">80%</span>
+                        <span style="font-weight: 600;">Ideal</span>
+                    </div>
+                    <div class="progress-bar-bg">
+                        <div class="progress-bar-fill green" style="width: 80%;"></div>
+                    </div>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-box">Temp: 24°C</div>
+                    <div class="stat-box">Luz: Alta</div>
+                    <div class="stat-box">Rega: Hoje</div>
+                </div>
+            </div>
+
+            <div class="monitor-card">
+                <div class="monitor-header">
+                    <div>
+                        <h3>Lado Direito</h3>
+                        <span style="color: #888;">Alecrim</span>
+                    </div>
+                    <div class="status-dot orange"></div>
+                </div>
+                <div class="progress-container">
+                    <div class="progress-info">
+                        <span class="percent orange">67%</span>
+                        <span style="font-weight: 600;">Média</span>
+                    </div>
+                    <div class="progress-bar-bg">
+                        <div class="progress-bar-fill orange" style="width: 67%;"></div>
+                    </div>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-box">Temp: 25°C</div>
+                    <div class="stat-box">Luz: Média</div>
+                    <div class="stat-box">Rega: Ontem</div>
+                </div>
+            </div>
         </section>
 
     </div>
 
     <footer>
-        <p>GreenMind © 2026 | Desenvolvido por Isabelle, Richard e Sarah</p>
+        <p>Isabelle Duarte Belo | Richard Wagenknecht | Sarah Julia Antunes Velho</p>
+        <p>Senac Blumenau © 2026</p>
     </footer>
 
     <script src="script.js"></script>
